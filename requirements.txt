@@ -1,0 +1,19 @@
+# 依赖包
+# 核心依赖
+numpy>=1.24.0
+
+# 服务化部署（FastAPI 微服务 / Docker 私有化部署）
+fastapi>=0.110.0
+uvicorn>=0.29.0
+pydantic>=2.0.0
+
+# 可选依赖（安装后启用对应功能）
+# sentence-transformers>=2.2.0  # 向量模型 + 重排模型（推荐）
+# faiss-cpu>=1.7.0            # FAISS 向量检索（推荐，比 numpy 快）
+# pymilvus>=2.4.0             # Milvus 企业级向量库后端（config.vector_store=milvus 时启用）
+# rank-bm25>=0.2.2            # BM25 检索（推荐，比内置实现快）
+# langchain>=0.1.0            # LLM 集成（可选）
+# gradio>=4.0.0               # Web UI（可选）
+# ragas>=0.1.0                # RAG 评估（可选）
+# openai>=1.0.0               # OpenAI API（可选）
+# pypdf>=4.0.0                # PDF 文档支持（可选）

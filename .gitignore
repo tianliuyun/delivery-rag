@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Data
+data/*.pkl
+data/knowledge_base/
+*.db
+*.index
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+
+# 模型权重（体积大，不入库）
+models/
+
+# 本地运行数据卷（Milvus/ES 实例数据，不入库）
+deploy/**/volumes/
