@@ -1,0 +1,2037 @@
+{
+  "testset": "data/qa_eval_set.jsonl",
+  "docs": "data/sample_docs",
+  "embedding": "models/bge-small-zh-v1.5",
+  "reranker": "models/bge-reranker-base",
+  "baseline": {
+    "name": "fixed_chunk + pure_vector",
+    "metrics": {
+      "total": 100,
+      "avg_ms": 11.567864418029785,
+      "hit_rate@1": 0.55,
+      "hit_rate@3": 0.72,
+      "hit_rate@5": 0.82,
+      "mrr": 0.6502
+    },
+    "detail": [
+      {
+        "question": "在 vLLM 部署 7B 模型时，--gpu-memory-utilization 参数的安全阈值范围是多少？超过多少容易 OOM？",
+        "hit_position": 2,
+        "golden_context": "- `--gpu-memory-utilization`：0.85~0.92，超过 0.95 易 OOM",
+        "retrieved_top": [
+          "型号 NVLink 互联\n\n**监控命令**：\n\n```bash\nnvidia-smi --query-gpu=memory.used,memory.total",
+          "tical min_size\n```\n\n---\n\n### 六、容量预警与扩容建议\n\n#### 6.1 阈值定义\n\n| 级别 | 使用率 | 动作 |\n|----",
+          "sh\npython -m vllm.entrypoints.openai.api_server \\\n  --model /models/Qwen2.5-7B-I"
+        ]
+      },
+      {
+        "question": "7B 模型使用 AWQ INT4 量化后显存占用大约多少？是否支持单卡部署多实例？",
+        "hit_position": 0,
+        "golden_context": "- 7B 优先 AWQ INT4，显存占用约 5GB，可单卡部署多实例",
+        "retrieved_top": [
+          "\n\n### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|------",
+          "## 企业私有化大模型部署指南\n\n### 1. 模型选型：7B 与 14B 的适用边界\n\n| 参数量 | 典型模型 | 最低显存（FP16） | 推荐场景 |\n",
+          "('/models/Qwen2.5-7B-Instruct')\ntok = AutoTokenizer.from_pretrained('/models/Qwe"
+        ]
+      },
+      {
+        "question": "Nginx 网关限流配置中，单 Key 默认的 QPS 阈值是多少？超限返回什么状态码？",
+        "hit_position": 0,
+        "golden_context": "3. 限流阈值：单 Key 默认 10 QPS，超限返回 429",
+        "retrieved_top": [
+          "在网关层校验 `Authorization: Bearer <API_KEY>`\n2. 按租户分配 Key，记录调用量至 Redis（端口 6379）\n3. 限",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping",
+          "## 3.3 阈值建议\n\n| 指标 | 正常 | 警告 | 故障 |\n|------|------|------|------|\n| 网关 CPU | <60%"
+        ]
+      },
+      {
+        "question": "交付检查清单中，压测 100 并发时 P99 延迟要求低于多少？监控告警需要接入哪些组件的端口？",
+        "hit_position": 1,
+        "golden_context": "3. 压测 100 并发，P99 延迟 < 3s\n4. 量化回归评分下降 ≤ 5%\n5. 网关限流与鉴权生效\n6. 监控告警接入 Prometheus (9090) + Grafana (3000)",
+        "retrieved_top": [
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping",
+          "在网关层校验 `Authorization: Bearer <API_KEY>`\n2. 按租户分配 Key，记录调用量至 Redis（端口 6379）\n3. 限",
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1"
+        ]
+      },
+      {
+        "question": "文档清洗去重时 MinHash LSH 的阈值设为多少？",
+        "hit_position": 0,
+        "golden_context": "去重：使用 MinHash LSH，阈值设为 0.85。",
+        "retrieved_top": [
+          "## RAG知识库建设与效果评估指南\n\n### 1. 文档清洗与分块策略\n\n#### 1.1 清洗流程\n1. 去重：使用 MinHash LSH，阈值设为 0.",
+          "evancy, context_precision, hit_rate]\n)\nprint(result)\n```\n\n#### 4.4 调优闭环\n1. 若 Fai",
+          "question`、`answer`、`contexts`、`ground_truth` 四列。\n\n#### 4.2 核心指标\n- **Faithfulness"
+        ]
+      },
+      {
+        "question": "父子块策略中父块和子块分别是多少 token，用什么实现？",
+        "hit_position": -1,
+        "golden_context": "父块：1024 token，用于生成回答上下文。\n  - 子块：256 token，用于检索。子块命中后返回其父块。\n  - 实现：LangChain `ParentDocumentRetriever",
+        "retrieved_top": [
+          "## RAG知识库建设与效果评估指南\n\n### 1. 文档清洗与分块策略\n\n#### 1.1 清洗流程\n1. 去重：使用 MinHash LSH，阈值设为 0.",
+          "('/models/Qwen2.5-7B-Instruct')\ntok = AutoTokenizer.from_pretrained('/models/Qwe",
+          "ci-deployer init --cluster-name prod-hci --mgmt-ip 10.10.300.11\n```\n\n**步骤 2：生成集群"
+        ]
+      },
+      {
+        "question": "向量检索使用的 Milvus 端口和 HNSW 索引参数 M、efConstruction、ef 分别是多少？",
+        "hit_position": 0,
+        "golden_context": "向量库：Milvus 2.4，端口 `19530`。\n- 索引：HNSW，`M=16`，`efConstruction=200`，检索 `ef=128`。",
+        "retrieved_top": [
+          "tRetriever`，`child_splitter=RecursiveCharacterTextSplitter(chunk_size=256)`，`par",
+          "`bash\neds pool df                    # 查看容量与使用率\neds osd tree                   #",
+          "edis List `review_queue`，端口 `6379`）。\n\n### 2. 关键配置与命令\n\n#### 2.1 分类初筛服务启动\n```bash\n"
+        ]
+      },
+      {
+        "question": "RAGAS 评估中 Hit Rate 的 K 值和阈值是多少，若低于阈值应如何调优？",
+        "hit_position": 1,
+        "golden_context": "**Hit Rate**：Top K 中是否包含正确文档。K=3，阈值 ≥ 0.90。",
+        "retrieved_top": [
+          "evancy, context_precision, hit_rate]\n)\nprint(result)\n```\n\n#### 4.4 调优闭环\n1. 若 Fai",
+          "question`、`answer`、`contexts`、`ground_truth` 四列。\n\n#### 4.2 核心指标\n- **Faithfulness",
+          "01 --end 2025-04-14 \\\n  --group-a-file /logs/group_a.csv --group-b-file /logs/gr"
+        ]
+      },
+      {
+        "question": "工单智能处理 Agent 的四个阶段通过什么消息队列串联？默认端口是多少？",
+        "hit_position": 0,
+        "golden_context": "各阶段通过内部消息队列（NATS，默认端口 `4222`）串联。",
+        "retrieved_top": [
+          "## 工单智能处理 Agent 落地指南\n\n### 1. 总体流程设计\n\n工单智能处理 Agent 按四阶段流水线运行，各阶段通过内部消息队列（NATS，默认端",
+          "annel-protocol lacp\n!\ninterface Port-channel10\n switchport mode trunk\n switchpor",
+          "端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6789 | TCP "
+        ]
+      },
+      {
+        "question": "启动分类初筛服务时，如何指定模型路径和置信度阈值？",
+        "hit_position": 0,
+        "golden_context": "python -m classifier.server --port 8001 --model-path /models/cls_v3 \\\n  --confidence-threshold 0.75 ",
+        "retrieved_top": [
+          "edis List `review_queue`，端口 `6379`）。\n\n### 2. 关键配置与命令\n\n#### 2.1 分类初筛服务启动\n```bash\n",
+          "01 --end 2025-04-14 \\\n  --group-a-file /logs/group_a.csv --group-b-file /logs/gr",
+          "question`、`answer`、`contexts`、`ground_truth` 四列。\n\n#### 4.2 核心指标\n- **Faithfulness"
+        ]
+      },
+      {
+        "question": "构建可复现的评测集时，使用 pytest 固定随机种子的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "pytest tests/eval --seed 42 --num-samples 200",
+        "retrieved_top": [
+          "sis_expected\": [\"cni-plugin-down\", \"ipam-exhausted\"],\n  \"confidence_expected\": 0",
+          "\n     iptables -L -n | grep -E \"2233|6789|6800\"\n     ```\n3. **集群状态查询**\n   - vSAN",
+          "加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n```bash\nlsmod | g"
+        ]
+      },
+      {
+        "question": "A/B 对比验证中，判定 Agent 有效的条件是什么？",
+        "hit_position": 1,
+        "golden_context": "若 B 组 MTTR 降低 `> 20%` 且 FAR 提升 `> 15%`，且 p-value `< 0.05`，则判定 Agent 有效。",
+        "retrieved_top": [
+          "(sAMAccountName=testuser)\"\n   ```\n2. 检查时间同步，Kerberos 允许偏差默认 5 分钟：\n   ```bash\n   ",
+          "01 --end 2025-04-14 \\\n  --group-a-file /logs/group_a.csv --group-b-file /logs/gr",
+          "sis_expected\": [\"cni-plugin-down\", \"ipam-exhausted\"],\n  \"confidence_expected\": 0"
+        ]
+      },
+      {
+        "question": "存储池告警磁盘异常且节点降级时，排查磁盘故障的第一步应该查看什么信息？",
+        "hit_position": 0,
+        "golden_context": "1. 查看磁盘 SMART 信息",
+        "retrieved_top": [
+          "# 分布式存储 EDS 常见故障排查\n\n## 一、磁盘故障\n\n### 现象\n- 存储池告警磁盘异常\n- 节点下线或降级\n- IO 延迟升高\n\n### 排查步骤\n",
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          " 启动阶段\n3. **强制重启前**：记录 `last reset reason`，避免直接断电导致存储元数据损坏\n4. **恢复供电后**：进入 BIOS/U"
+        ]
+      },
+      {
+        "question": "存储节点失联、IO 卡住或集群裂脑时，排查网络故障需要确认万兆网卡状态以及检查什么？",
+        "hit_position": 0,
+        "golden_context": "2. 确认万兆网卡状态",
+        "retrieved_top": [
+          "# 分布式存储 EDS 常见故障排查\n\n## 一、磁盘故障\n\n### 现象\n- 存储池告警磁盘异常\n- 节点下线或降级\n- IO 延迟升高\n\n### 排查步骤\n",
+          "## 超融合节点故障排查手册：节点离线/宕机/掉线的处理流程\n\n### 一、故障分级与初步判断\n\n节点“离线/宕机/掉线”通常表现为：\n- 管理界面（如 Pri",
+          "--vip 10.10.300.100\nhci-deployer monitor enable --prometheus --grafana\n```\n\n## 5"
+        ]
+      },
+      {
+        "question": "针对性能问题中的磁盘性能瓶颈（SSD vs HDD），优化建议中提出增加什么缓存层？",
+        "hit_position": 1,
+        "golden_context": "1. 增加 SSD 缓存层",
+        "retrieved_top": [
+          "## 分布式存储性能优化指南\n\n### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。",
+          "# 分布式存储 EDS 常见故障排查\n\n## 一、磁盘故障\n\n### 现象\n- 存储池告警磁盘异常\n- 节点下线或降级\n- IO 延迟升高\n\n### 排查步骤\n",
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，"
+        ]
+      },
+      {
+        "question": "日常运维建议中，重要数据应开启多副本，至少需要几个副本？",
+        "hit_position": -1,
+        "golden_context": "重要数据开启多副本（至少 3 副本）",
+        "retrieved_top": [
+          "整体超过 **75%**，建议优先横向扩容节点而非单节点加盘。\n\n---\n\n### 七、日常巡检清单\n\n- 每日：`ceph -s`、`ceph osd tre",
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          " RAID\n- **禁止**同时重启两个及以上节点（除非确认副本数 ≥2 且健康）\n- **禁止**在重建未完成时进行固件批量升级\n\n### 七、升级路径\n\n若"
+        ]
+      },
+      {
+        "question": "部署 NVIDIA 授权服务器时，License 服务默认使用哪个端口？",
+        "hit_position": -1,
+        "golden_context": "配置 License 服务端口（默认 7070）",
+        "retrieved_top": [
+          "A 系列 vGPU 或 MIG；训练用直通。\n\n### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内",
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "nse-server-ip>:8080`，登录后上传从 NVIDIA 获取的 `.bin` 授权文件。\n5. 在虚拟机内 vGPU 驱动配置中指定授权服务器地址"
+        ]
+      },
+      {
+        "question": "GPU 虚拟化云桌面方案中，存储网络和业务网络分别要求多少带宽？",
+        "hit_position": 0,
+        "golden_context": "存储网络：万兆以上\n- 业务网络：万兆以上",
+        "retrieved_top": [
+          "# GPU 虚拟化云桌面部署指南\n\n## 一、方案概述\n\nGPU 虚拟化云桌面适用于 3D 设计、视频渲染、GIS 等高性能图形场景。通过 NVIDIA 显卡虚",
+          "## GPU虚拟化（vGPU）配置指南\n\n本文面向企业云计算交付与运维人员，说明 NVIDIA vGPU 的类型划分、授权服务器部署、推荐硬件选型、存储网络要求",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）"
+        ]
+      },
+      {
+        "question": "配置 GPU 资源池时，A16 显卡可以配置哪些 vGPU 类型？",
+        "hit_position": 0,
+        "golden_context": "配置 vGPU 类型（如 A16-1Q / A16-2Q / A16-4Q）",
+        "retrieved_top": [
+          "2. 配置 vGPU 类型（如 A16-1Q / A16-2Q / A16-4Q）\n3. 设置 GPU 资源调度策略\n4. 配置 GPU 过载保护\n\n### 3",
+          "NVIDIA A40**：48GB，适合专业图形与中等训练。\n- **NVIDIA H20**：面向大模型推理，合规场景可选。\n\n注意：消费级 GeForce ",
+          "('/models/Qwen2.5-7B-Instruct')\ntok = AutoTokenizer.from_pretrained('/models/Qwe"
+        ]
+      },
+      {
+        "question": "重型渲染场景推荐使用哪种 vGPU 类型，显存建议是多少？",
+        "hit_position": 3,
+        "golden_context": "| 重型渲染 | 8Q / 16Q | 8GB+ |",
+        "retrieved_top": [
+          "## 企业私有化大模型部署指南\n\n### 1. 模型选型：7B 与 14B 的适用边界\n\n| 参数量 | 典型模型 | 最低显存（FP16） | 推荐场景 |\n",
+          "\n\n### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|------",
+          "NVIDIA A40**：48GB，适合专业图形与中等训练。\n- **NVIDIA H20**：面向大模型推理，合规场景可选。\n\n注意：消费级 GeForce "
+        ]
+      },
+      {
+        "question": "EDS 存储节点的 SSD 缓存盘和 HDD 容量盘推荐配置分别是多少？单节点裸容量是多少？",
+        "hit_position": 0,
+        "golden_context": "| SSD 缓存盘 | NVMe 1.92TB 企业级 | 2 | 做 RAID1，用于元数据与写缓存 |\n| HDD 容量盘 | 16TB SATA 7.2K | 10 | 单节点裸容量 160TB",
+        "retrieved_top": [
+          "## 分布式存储（EDS类）部署指南\n\n### 1. 存储节点规划\n\n#### 1.1 硬件配置基线\nEDS 采用 SSD 缓存 + HDD 容量的混合架构。单",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **",
+          "## 分布式存储性能优化指南\n\n### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。"
+        ]
+      },
+      {
+        "question": "EDS 后端存储网的 MTU 要求是多少？如何用 ping 命令验证 Jumbo Frame 配置是否生效？",
+        "hit_position": 3,
+        "golden_context": "- **后端存储网**：10GbE 或 25GbE，承载副本复制与数据重建，MTU 9000（Jumbo Frame）。",
+        "retrieved_top": [
+          "pv4.method manual\nnmcli con mod bond0 802-3-ethernet.mtu 9000\nnmcli con up bond0",
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping"
+        ]
+      },
+      {
+        "question": "EDS 创建存储池时 --pg-num 参数如何计算？30 个 OSD 三副本场景下 PG 建议值是多少？",
+        "hit_position": 0,
+        "golden_context": "- `--pg-num`：PG 数 = (OSD 总数 × 100) / 副本数，取 2 的幂。10 OSD × 3 节点 = 30 OSD，三副本时 PG 建议 1024。",
+        "retrieved_top": [
+          "b-k] \\\n  --cache-mode writeback \\\n  --pg-num 128\n```\n3. 参数说明：\n   - `--cache-mode",
+          "pv4.method manual\nnmcli con mod bond0 802-3-ethernet.mtu 9000\nnmcli con up bond0",
+          "，MTU 建议 9000。\n- 若使用 vSAN，确认新节点磁盘组已自动创建或手动添加。\n- 检查端口连通性：`nc -zv <节点IP> 111`（NFS）、"
+        ]
+      },
+      {
+        "question": "EDS 中磁盘使用率超过多少会触发再平衡？单 OSD 使用率偏差超过多少会触发回填？",
+        "hit_position": -1,
+        "golden_context": "- 磁盘使用率 > 85% 触发再平衡。\n- 单 OSD 使用率偏差 > 10% 触发回填。",
+        "retrieved_top": [
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          "evancy, context_precision, hit_rate]\n)\nprint(result)\n```\n\n#### 4.4 调优闭环\n1. 若 Fai",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池"
+        ]
+      },
+      {
+        "question": "在Ceph + BlueStore中配置SSD缓存层时，cache_target_dirty_ratio和cache_min_flush_age的推荐阈值分别是多少？",
+        "hit_position": -1,
+        "golden_context": "- `cache_target_dirty_ratio`：0.4\n- `cache_target_full_ratio`：0.8\n- `cache_min_flush_age`：600（秒）\n- `c",
+        "retrieved_top": [
+          "## 分布式存储性能优化指南\n\n### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。",
+          "dirty_ratio`：0.4\n- `cache_target_full_ratio`：0.8\n- `cache_min_flush_age`：600（秒）\n",
+          "`bash\nfor obj in $(rados ls -p data-pool); do\n  qps=$(rados -p data-pool get obj"
+        ]
+      },
+      {
+        "question": "智能分层策略中热层和温层的访问频率划分标准是什么？",
+        "hit_position": 0,
+        "golden_context": "- 热层：SSD/NVMe，访问频率 > 10次/小时\n- 温层：SAS/HDD，访问频率 1~10次/小时\n- 冷层：大容量HDD/对象存储，访问频率 < 1次/天",
+        "retrieved_top": [
+          "dirty_ratio`：0.4\n- `cache_target_full_ratio`：0.8\n- `cache_min_flush_age`：600（秒）\n",
+          "`bash\nfor obj in $(rados ls -p data-pool); do\n  qps=$(rados -p data-pool get obj",
+          "## 数据中心网络规划指南\n\n### 1. 三层架构设计原则\n\n采用核心-汇聚-接入三层模型。核心层负责高速转发，建议部署2台框式交换机（如Cisco N950"
+        ]
+      },
+      {
+        "question": "针对数据库OLTP业务，推荐的条带大小范围是多少？",
+        "hit_position": 0,
+        "golden_context": "| 数据库OLTP | 64K~128K | 降低延迟 |",
+        "retrieved_top": [
+          "d pool set data-pool target_max_bytes 10995116277760\n```\n建议每15分钟执行一次分层评估，迁移窗口设为业",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）"
+        ]
+      },
+      {
+        "question": "性能基线测试中，随机写测试的FIO命令使用什么块大小和队列深度？",
+        "hit_position": 0,
+        "golden_context": "fio --name=randwrite --rw=randwrite --bs=4k --iodepth=32 --numjobs=8 --size=5G --runtime=120 --time_",
+        "retrieved_top": [
+          "time=120 --time_based --group_reporting\n```\n3. 随机写测试（4K，32队列深度）：\n```bash\nfio --n",
+          "`bash\nfor obj in $(rados ls -p data-pool); do\n  qps=$(rados -p data-pool get obj",
+          "加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n```bash\nlsmod | g"
+        ]
+      },
+      {
+        "question": "执行 Ceph RBD 快照操作前，需要确认存储集群的健康状态是什么？",
+        "hit_position": 0,
+        "golden_context": "存储集群健康状态为 `HEALTH_OK`（Ceph）或 `Normal`（OceanStor）。",
+        "retrieved_top": [
+          "## 存储快照与备份恢复操作指南\n\n### 1. 适用范围与前置条件\n\n本指南适用于基于 Ceph RBD、华为 OceanStor 或同类块存储的云平台交付场",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操",
+          "me snap_$(date +%Y%m%d%H%M) --lun vol-prod-01\n```\n\n#### 2.2 保留策略\n\n| 快照类型 | 保留周期 "
+        ]
+      },
+      {
+        "question": "快照占用超过卷容量多少时会触发工单，超过多少会自动暂停新快照创建？",
+        "hit_position": 0,
+        "golden_context": "阈值告警：快照占用超过卷容量 20% 时触发工单；超过 30% 自动暂停新快照创建。",
+        "retrieved_top": [
+          "me snap_$(date +%Y%m%d%H%M) --lun vol-prod-01\n```\n\n#### 2.2 保留策略\n\n| 快照类型 | 保留周期 ",
+          "log/backup/inc.log 2>&1\n```\n\n校验：每次备份完成后执行 `md5sum` 比对，失败重试 3 次，间隔 10 分钟。\n\n### 4.",
+          "## 存储快照与备份恢复操作指南\n\n### 1. 适用范围与前置条件\n\n本指南适用于基于 Ceph RBD、华为 OceanStor 或同类块存储的云平台交付场"
+        ]
+      },
+      {
+        "question": "全量备份窗口的并发任务数和单任务带宽限制分别是多少？",
+        "hit_position": 0,
+        "golden_context": "备份窗口：每日 01:00-05:00，并发任务不超过 4 个，单任务带宽限制 200 MB/s。",
+        "retrieved_top": [
+          "rt rbd/vol-prod-01@snap-202501010200 /backup/vol-prod-01-full-20250101.img\n```\n\n",
+          "d pool set data-pool target_max_bytes 10995116277760\n```\n建议每15分钟执行一次分层评估，迁移窗口设为业",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）"
+        ]
+      },
+      {
+        "question": "恢复一致性检查清单中要求的 RTO 和 RPO 指标分别是多少？",
+        "hit_position": -1,
+        "golden_context": "恢复 RTO ≤ 30 分钟，RPO ≤ 15 分钟。",
+        "retrieved_top": [
+          "整体超过 **75%**，建议优先横向扩容节点而非单节点加盘。\n\n---\n\n### 七、日常巡检清单\n\n- 每日：`ceph -s`、`ceph osd tre",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser",
+          " off\n   ceph pg repeer <pgid>\n   ```\n5. 验证恢复结果：\n   ```bash\n   ceph -s | grep -E "
+        ]
+      },
+      {
+        "question": "防火墙策略匹配的优先级规则模型是什么？具体性优先原则如何理解？",
+        "hit_position": 0,
+        "golden_context": "主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用**自上而下、首次匹配即生效**的规则模型。",
+        "retrieved_top": [
+          "## 防火墙策略配置与排障手册\n\n## 一、策略优先级规则\n\n主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用*",
+          "y` 查看会话匹配的策略ID。\n4. 调整规则顺序：`security-policy` 视图下使用 `move rule` 或重新编号。\n\n### 3.2 规则",
+          "## 企业等级保护（等保）合规建设指南\n\n### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域："
+        ]
+      },
+      {
+        "question": "Kubernetes API 和 Docker Registry 分别需要放行哪个端口？",
+        "hit_position": -1,
+        "golden_context": "| Kubernetes API | TCP | 6443 | 集群管理 |\n| Docker Registry | TCP | 5000 | 镜像仓库 |",
+        "retrieved_top": [
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "客户端到虚拟机的TCP 3389（RDP）或1494（ICA）端口是否放行。\n\n#### 2.3 读卡器重定向\n\n**配置步骤：**\n\n1. 策略中启用“智能卡",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **"
+        ]
+      },
+      {
+        "question": "策略不生效时，如何查看会话匹配的策略ID？",
+        "hit_position": 1,
+        "golden_context": "使用 `display firewall session table source x.x.x.x destination y.y.y.y` 查看会话匹配的策略ID。",
+        "retrieved_top": [
+          "y` 查看会话匹配的策略ID。\n4. 调整规则顺序：`security-policy` 视图下使用 `move rule` 或重新编号。\n\n### 3.2 规则",
+          " | 域名解析 |\n| SNMP | UDP | 161/162 | 监控采集 |\n| Syslog | UDP | 514 | 日志外发 |\n| LDAP |",
+          "## 防火墙策略配置与排障手册\n\n## 一、策略优先级规则\n\n主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用*"
+        ]
+      },
+      {
+        "question": "TCP、UDP、ICMP 的会话老化时间默认值分别是多少？长连接业务如何调整？",
+        "hit_position": 0,
+        "golden_context": "2. 常见默认值：TCP 3600s、UDP 120s、ICMP 20s。",
+        "retrieved_top": [
+          "y` 查看会话匹配的策略ID。\n4. 调整规则顺序：`security-policy` 视图下使用 `move rule` 或重新编号。\n\n### 3.2 规则",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser",
+          "整体超过 **75%**，建议优先横向扩容节点而非单节点加盘。\n\n---\n\n### 七、日常巡检清单\n\n- 每日：`ceph -s`、`ceph osd tre"
+        ]
+      },
+      {
+        "question": "IPSec VPN 的 IKE 第一阶段协商失败，日志出现 certificate expired，应如何检查证书有效期和 CA 链完整性？",
+        "hit_position": 0,
+        "golden_context": "openssl x509 -in vpn.crt -noout -dates\nopenssl verify -CAfile ca.crt vpn.crt",
+        "retrieved_top": [
+          "## VPN与远程接入故障排查手册\n\n### 1. 适用范围\n本手册适用于企业分支/移动办公场景下的 IPSec VPN、SSL VPN 与远程拨号接入故障定位",
+          "(sAMAccountName=testuser)\"\n   ```\n2. 检查时间同步，Kerberos 允许偏差默认 5 分钟：\n   ```bash\n   ",
+          "l x509 -in /etc/hdp/gateway.crt -noout -dates\n   ```\n2. 阈值：剩余有效期 < 30 天必须更换；< 7 "
+        ]
+      },
+      {
+        "question": "IPSec VPN 隧道参数不匹配时，两端 proposal、lifetime 和 DPD 的默认 lifetime 是多少？",
+        "hit_position": 0,
+        "golden_context": "两端 `proposal`、`lifetime`（默认 28800s）、`DPD` 必须一致。",
+        "retrieved_top": [
+          " 常见不匹配项：\n  - IKE 版本：IKEv1 vs IKEv2\n  - 加密算法：AES-128 vs AES-256\n  - 哈希：SHA1 vs SH",
+          "time=120 --time_based --group_reporting\n```\n3. 随机写测试（4K，32队列深度）：\n```bash\nfio --n",
+          "(sAMAccountName=testuser)\"\n   ```\n2. 检查时间同步，Kerberos 允许偏差默认 5 分钟：\n   ```bash\n   "
+        ]
+      },
+      {
+        "question": "排查 IPSec VPN 故障时，需要放通哪些端口和协议？",
+        "hit_position": -1,
+        "golden_context": "检查端口放通：UDP 500、UDP 4500、ESP（协议号 50）、SSL VPN TCP 443。",
+        "retrieved_top": [
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6789 | TCP ",
+          "## 超融合节点故障排查手册：节点离线/宕机/掉线的处理流程\n\n### 一、故障分级与初步判断\n\n节点“离线/宕机/掉线”通常表现为：\n- 管理界面（如 Pri"
+        ]
+      },
+      {
+        "question": "VPN 证书续期流程中，生成 CSR 的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "openssl req -new -newkey rsa:2048 -nodes -keyout vpn.key -out vpn.csr",
+        "retrieved_top": [
+          "流量。\n\n### 3. 排查步骤\n\n1. 确认物理链路与路由可达：\n```bash\nping -c 4 <VPN_PEER_IP>\ntraceroute <VP",
+          "(sAMAccountName=testuser)\"\n   ```\n2. 检查时间同步，Kerberos 允许偏差默认 5 分钟：\n   ```bash\n   ",
+          "## VPN与远程接入故障排查手册\n\n### 1. 适用范围\n本手册适用于企业分支/移动办公场景下的 IPSec VPN、SSL VPN 与远程拨号接入故障定位"
+        ]
+      },
+      {
+        "question": "在等保合规建设中，如何配置iptables规则以仅允许管理区10.10.2.0/24访问核心业务区的SSH端口？",
+        "hit_position": 3,
+        "golden_context": "iptables -A INPUT -s 10.10.2.0/24 -p tcp --dport 22 -j ACCEPT\niptables -A INPUT -p tcp --dport 22 -j",
+        "retrieved_top": [
+          "## 企业等级保护（等保）合规建设指南\n\n### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：",
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "00-499：DMZ区\n\n**配置示例（Cisco）**：\n```\nvlan 200\n name PROD-WEB\ninterface Vlan200\n ip "
+        ]
+      },
+      {
+        "question": "等保要求中，运维账户的密码策略具体有哪些规定？",
+        "hit_position": 3,
+        "golden_context": "所有运维账户强制启用MFA，密码策略：长度≥12位，含大小写、数字、特殊字符，90天更换。",
+        "retrieved_top": [
+          "## 企业等级保护（等保）合规建设指南\n\n### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：",
+          "y` 查看会话匹配的策略ID。\n4. 调整规则顺序：`security-policy` 视图下使用 `move rule` 或重新编号。\n\n### 3.2 规则",
+          "码策略 | ≥12位，90天 | `chage -l username` |\n| 日志留存 | ≥180天 | `ls -l /var/log/audit/` "
+        ]
+      },
+      {
+        "question": "等保合规对日志留存时间的要求是什么？必须采集哪些日志源？",
+        "hit_position": 0,
+        "golden_context": "等保要求日志留存≥6个月，核心操作日志≥12个月。\n\n**必须采集的日志源：**\n- 操作系统：`/var/log/secure`、`/var/log/audit/audit.log`\n- 数据库：慢",
+        "retrieved_top": [
+          "son\n  {\n    \"Effect\": \"Allow\",\n    \"Action\": [\"ecs:StartInstance\", \"ecs:StopInst",
+          "码策略 | ≥12位，90天 | `chage -l username` |\n| 日志留存 | ≥180天 | `ls -l /var/log/audit/` ",
+          "## 企业等级保护（等保）合规建设指南\n\n### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域："
+        ]
+      },
+      {
+        "question": "在边界防护设备部署中，WAF的CC防护和防火墙会话超时的关键配置参数是什么？",
+        "hit_position": 0,
+        "golden_context": "防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF CC防护：单IP 60秒内请求>100次则挑战验证。",
+        "retrieved_top": [
+          "IDS/IPS**：镜像核心交换机流量，检测横向移动。\n\n#### 4.2 关键配置参数\n- 防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF",
+          "g转发）：**\n```bash\n# /etc/rsyslog.conf\n*.* @@10.10.2.100:514\n```\n在日志服务器上启用 `auditd`",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池"
+        ]
+      },
+      {
+        "question": "如何通过BMC命令行查看服务器的系统事件日志（SEL）？",
+        "hit_position": 2,
+        "golden_context": "通过SSH登录BMC，执行 `ipmitool sel list` 查看系统事件日志（SEL）。",
+        "retrieved_top": [
+          "g转发）：**\n```bash\n# /etc/rsyslog.conf\n*.* @@10.10.2.100:514\n```\n在日志服务器上启用 `auditd`",
+          "LVM\n```\n\n#### 步骤 3：检查并修复文件系统\n```bash\nfsck -y /dev/sda1       # /boot 分区\nfsck -y ",
+          "## 服务器硬件故障排查手册\n\n### 1. 适用范围与前置准备\n\n本手册适用于主流x86机架式服务器（Dell PowerEdge、HPE ProLiant、"
+        ]
+      },
+      {
+        "question": "电源老化判定的具体阈值有哪些？",
+        "hit_position": 0,
+        "golden_context": "- 电源风扇转速持续低于 `2000 RPM`（正常约 `4000-8000 RPM`）。\n- 输入电压正常（220V±10%）时，输出电压12V偏差超过 `±5%`（即低于11.4V或高于12.6V",
+        "retrieved_top": [
+          "Hz），或BMC界面PSU状态为 `Failed`。\n- `ipmitool sdr type \"Power Supply\"` 输出中 `Status` 为 `",
+          "`bash\neds pool df                    # 查看容量与使用率\neds osd tree                   #",
+          "tical min_size\n```\n\n---\n\n### 六、容量预警与扩容建议\n\n#### 6.1 阈值定义\n\n| 级别 | 使用率 | 动作 |\n|----"
+        ]
+      },
+      {
+        "question": "风扇异响中，高频啸叫对应什么故障？转速波动阈值是多少？",
+        "hit_position": 0,
+        "golden_context": "- **高频啸叫**：轴承磨损，转速波动超过 `±15%`。",
+        "retrieved_top": [
+          "l clear` 清除历史告警。\n6. 若更换后仍报警，检查电源背板或主板供电电路，转主板告警流程。\n\n### 3. 风扇异响与损坏判断\n\n#### 3.1 异",
+          "Hz），或BMC界面PSU状态为 `Failed`。\n- `ipmitool sdr type \"Power Supply\"` 输出中 `Status` 为 `",
+          " type Fan` 确认转速恢复至 `3000-8000 RPM`。\n5. 若更换后BMC仍报 `Fan failure`，检查风扇背板连接器或主板FAN接口"
+        ]
+      },
+      {
+        "question": "更换主板后需要重新配置哪些信息？",
+        "hit_position": 0,
+        "golden_context": "更换主板需重新配置BIOS、BMC IP、RAID卡信息，建议提前导出配置。",
+        "retrieved_top": [
+          "ltage`，若 `Vcore` 或 `Vcc` 偏差超过 `±5%`，为主板供电模块故障。\n\n#### 4.3 处理建议\n\n1. 主板告警优先尝试重置BIOS",
+          "闭变更单。\n\n#### 5.2 维修窗口建议\n\n- **电源/风扇热插拔**：可安排在业务低峰期（如凌晨2:00-4:00），无需停机。\n- **主板/CPU/",
+          " type Fan` 确认转速恢复至 `3000-8000 RPM`。\n5. 若更换后BMC仍报 `Fan failure`，检查风扇背板连接器或主板FAN接口"
+        ]
+      },
+      {
+        "question": "Linux 服务器启动卡在 GRUB 或 grub rescue> 提示符时，应该优先使用哪些命令排查？",
+        "hit_position": 2,
+        "golden_context": "| 启动卡在 GRUB / `grub rescue>` | 引导分区损坏、磁盘掉线 | `lsblk`、`fdisk -l` |",
+        "retrieved_top": [
+          "SED\n- `grub2-editenv list` 默认内核与预期一致\n- 重启 3 次均正常进入多用户模式（`systemctl get-default` ",
+          " 启动阶段\n3. **强制重启前**：记录 `last reset reason`，避免直接断电导致存储元数据损坏\n4. **恢复供电后**：进入 BIOS/U",
+          "## Linux服务器系统运维排障手册：操作系统蓝屏/引导失败/内核panic的处理\n\n### 一、故障分类与快速定位\n\nLinux 无“蓝屏”概念，对应表现为"
+        ]
+      },
+      {
+        "question": "使用 dmesg 检查磁盘健康时，ata 报错频率超过多少需要怀疑磁盘或线缆故障？",
+        "hit_position": 0,
+        "golden_context": "阈值参考：`ata` 报错超过 5 次/分钟 → 磁盘或线缆故障；",
+        "retrieved_top": [
+          "错误/警告\ndmesg | grep -iE \"panic|oops|call trace|ata[0-9]+.*error\"\ndmesg -T | tail ",
+          "整体超过 **75%**，建议优先横向扩容节点而非单节点加盘。\n\n---\n\n### 七、日常巡检清单\n\n- 每日：`ceph -s`、`ceph osd tre",
+          "# 分布式存储 EDS 常见故障排查\n\n## 一、磁盘故障\n\n### 现象\n- 存储池告警磁盘异常\n- 节点下线或降级\n- IO 延迟升高\n\n### 排查步骤\n"
+        ]
+      },
+      {
+        "question": "在系统盘修复步骤中，重建 initramfs 时 RHEL/CentOS 系统应执行什么命令？",
+        "hit_position": 0,
+        "golden_context": "dracut -f /boot/initramfs-$(uname -r).img $(uname -r)   # RHEL/CentOS",
+        "retrieved_top": [
+          "LVM\n```\n\n#### 步骤 3：检查并修复文件系统\n```bash\nfsck -y /dev/sda1       # /boot 分区\nfsck -y ",
+          "Dependency failed`、`Kernel command line`。\n\n#### 2.3 端口与磁盘快速检查\n```bash\nss -tlnp |",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser"
+        ]
+      },
+      {
+        "question": "处理驱动冲突时，如何使 modprobe 黑名单在 initramfs 中生效？",
+        "hit_position": 0,
+        "golden_context": "dracut -f                          # 重建 initramfs 使黑名单生效",
+        "retrieved_top": [
+          "加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n```bash\nlsmod | g",
+          "log/backup/inc.log 2>&1\n```\n\n校验：每次备份完成后执行 `md5sum` 比对，失败重试 3 次，间隔 10 分钟。\n\n### 4.",
+          "LVM\n```\n\n#### 步骤 3：检查并修复文件系统\n```bash\nfsck -y /dev/sda1       # /boot 分区\nfsck -y "
+        ]
+      },
+      {
+        "question": "连接代理向虚拟桌面池上报桌面状态使用哪个协议和端口？",
+        "hit_position": 0,
+        "golden_context": "| 连接代理 | 虚拟桌面池 | TCP | 5500 | 桌面状态上报 |",
+        "retrieved_top": [
+          "----|------|------|------|\n| 连接代理 | 认证服务 | HTTPS | 443 | 用户认证请求 |\n| 连接代理 | 虚拟桌面池",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池",
+          "## 桌面云平台整体架构与部署指南\n\n## 1. 架构概述\n\n桌面云平台采用分层解耦架构，核心组件包括：连接代理（Connection Broker）、虚拟桌面"
+        ]
+      },
+      {
+        "question": "单机部署桌面云时，部署连接代理（broker:3.0）的 docker run 命令是什么？",
+        "hit_position": 1,
+        "golden_context": "docker run -d --name broker -p 5500:5500 -p 9443:9443 broker:3.0",
+        "retrieved_top": [
+          "   docker run -d --name gateway -p 443:443 -p 3389:3389 gateway:2.5\n   ```\n7. **",
+          "GB RAM / 500 GB SSD。\n2. **安装依赖**：\n   ```bash\n   sudo apt update && sudo apt inst",
+          "th --replicas 2 -p 443:443 auth-service:2.1\n   ```\n4. **部署许可证服务集群**：\n   ```bash\n"
+        ]
+      },
+      {
+        "question": "集群部署中，关闭任一连接代理后会话应在多长时间内切换至其他节点？",
+        "hit_position": 1,
+        "golden_context": "关闭任一连接代理，会话应在 30 秒内切换至其他节点。",
+        "retrieved_top": [
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser",
+          "1:443 check\n     server gw2 10.0.0.12:443 check\n   ```\n7. **加入虚拟桌面池**：每台宿主机运行 `p",
+          " RAID\n- **禁止**同时重启两个及以上节点（除非确认副本数 ≥2 且健康）\n- **禁止**在重建未完成时进行固件批量升级\n\n### 七、升级路径\n\n若"
+        ]
+      },
+      {
+        "question": "容量规划中，会话网关的带宽应按每并发用户多少预留？",
+        "hit_position": 0,
+        "golden_context": "会话网关带宽按每并发用户 2 Mbps 预留。",
+        "retrieved_top": [
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **",
+          "）**：\n```\ninterface Eth-Trunk1\n mode lacp-static\n dfs-group 1\n peer-link 1\n```\n需确"
+        ]
+      },
+      {
+        "question": "桌面云登录超时排查时，客户端 ping 网关的平均延迟和抖动超过多少判定为网络质量问题？",
+        "hit_position": -1,
+        "golden_context": "在客户端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。",
+        "retrieved_top": [
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping",
+          "# 桌面云接入速度优化指南\n\n## 一、常见问题现象\n\n用户反馈桌面云登录慢、打开应用卡、操作延迟高。可能的原因包括网络问题、服务器资源不足、客户端配置不当等。"
+        ]
+      },
+      {
+        "question": "桌面云网关证书剩余有效期低于多少天必须更换，低于多少天会导致 TLS 握手随机失败？",
+        "hit_position": 2,
+        "golden_context": "阈值：剩余有效期 < 30 天必须更换；< 7 天将导致 TLS 握手随机失败。",
+        "retrieved_top": [
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类",
+          "## 3.3 阈值建议\n\n| 指标 | 正常 | 警告 | 故障 |\n|------|------|------|------|\n| 网关 CPU | <60%",
+          "l x509 -in /etc/hdp/gateway.crt -noout -dates\n   ```\n2. 阈值：剩余有效期 < 30 天必须更换；< 7 "
+        ]
+      },
+      {
+        "question": "排查桌面云连接断开时，agent-cli status 显示心跳间隔和连续丢失次数达到什么条件判定断连？",
+        "hit_position": 1,
+        "golden_context": "心跳间隔应 ≤ 5s，连续 3 次丢失判定断连",
+        "retrieved_top": [
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类",
+          "## 3.3 阈值建议\n\n| 指标 | 正常 | 警告 | 故障 |\n|------|------|------|------|\n| 网关 CPU | <60%",
+          "--vip 10.10.300.100\nhci-deployer monitor enable --prometheus --grafana\n```\n\n## 5"
+        ]
+      },
+      {
+        "question": "桌面云认证失败排查中，Kerberos 允许的时间偏差默认是多少分钟，用什么命令检查时间同步？",
+        "hit_position": 1,
+        "golden_context": "检查时间同步，Kerberos 允许偏差默认 5 分钟：",
+        "retrieved_top": [
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类",
+          "(sAMAccountName=testuser)\"\n   ```\n2. 检查时间同步，Kerberos 允许偏差默认 5 分钟：\n   ```bash\n   ",
+          "## 桌面云性能调优指南：操作卡顿、鼠标延迟、画面冻结的常见原因\n\n### 一、问题现象与排查思路\n\n桌面云体验劣化通常表现为三类现象：操作卡顿（应用响应慢）、"
+        ]
+      },
+      {
+        "question": "在 Windows 虚拟桌面内排查 CPU 和内存瓶颈时，应该用哪个 PowerShell 命令查看处理器使用率和可用内存？",
+        "hit_position": -1,
+        "golden_context": "# 查看 CPU 与内存使用\nGet-Counter '\\Processor(_Total)\\% Processor Time','\\Memory\\Available MBytes'",
+        "retrieved_top": [
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          "172：PCoIP\n- UDP 3389：RDP UDP 传输\n- TCP 3389：RDP\n\n### 四、存储 IO 瓶颈\n\n#### 4.1 常见原因\n\n-",
+          "1:443 check\n     server gw2 10.0.0.12:443 check\n   ```\n7. **加入虚拟桌面池**：每台宿主机运行 `p"
+        ]
+      },
+      {
+        "question": "桌面云中普通办公场景每用户建议的带宽是多少，1080p 分辨率下？",
+        "hit_position": 3,
+        "golden_context": "| 普通办公 | 1080p | 2–4 Mbps |",
+        "retrieved_top": [
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池",
+          "# GPU 虚拟化云桌面部署指南\n\n## 一、方案概述\n\nGPU 虚拟化云桌面适用于 3D 设计、视频渲染、GIS 等高性能图形场景。通过 NVIDIA 显卡虚"
+        ]
+      },
+      {
+        "question": "PCoIP 传输使用哪个 UDP 端口，需要在防火墙中放通？",
+        "hit_position": -1,
+        "golden_context": "UDP 4172：PCoIP",
+        "retrieved_top": [
+          "A 系列 vGPU 或 MIG；训练用直通。\n\n### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内",
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "IDS/IPS**：镜像核心交换机流量，检测横向移动。\n\n#### 4.2 关键配置参数\n- 防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF"
+        ]
+      },
+      {
+        "question": "宿主机 CPU 超分比检查中，%RDY 超过多少表示 vCPU 等待严重，普通办公场景建议的超分比上限是多少？",
+        "hit_position": 1,
+        "golden_context": "- %RDY > 10% 表示 vCPU 等待严重。\n- 超分比建议：普通办公 ≤ 4:1，图形/开发 ≤ 2:1。",
+        "retrieved_top": [
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          "172：PCoIP\n- UDP 3389：RDP UDP 传输\n- TCP 3389：RDP\n\n### 四、存储 IO 瓶颈\n\n#### 4.1 常见原因\n\n-",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping"
+        ]
+      },
+      {
+        "question": "在华为FusionAccess中配置USB设备重定向时，读卡器的VID/PID应该填写什么？",
+        "hit_position": 1,
+        "golden_context": "读卡器：`VID_058F&PID_9540`",
+        "retrieved_top": [
+          "客户端到虚拟机的TCP 3389（RDP）或1494（ICA）端口是否放行。\n\n#### 2.3 读卡器重定向\n\n**配置步骤：**\n\n1. 策略中启用“智能卡",
+          "## 桌面云外设重定向配置与排障指南\n\n### 1. 适用范围与背景\n\n本文适用于基于华为FusionAccess、Citrix Virtual ",
+          "## 数据中心网络规划指南\n\n### 1. 三层架构设计原则\n\n采用核心-汇聚-接入三层模型。核心层负责高速转发，建议部署2台框式交换机（如Cisco N950"
+        ]
+      },
+      {
+        "question": "打印机重定向时，若使用网络打印机需要确保虚拟机可访问打印服务器的哪些TCP端口？",
+        "hit_position": 0,
+        "golden_context": "若使用网络打印机，确保虚拟机可访问打印服务器TCP 445、9100端口。",
+        "retrieved_top": [
+          "定向”选项已勾选。\n\n**验证方法：**\n\n- 在虚拟机内执行 `Get-PnpDevice -Class USB`（PowerShell），查看设备是否出现。",
+          "客户端到虚拟机的TCP 3389（RDP）或1494（ICA）端口是否放行。\n\n#### 2.3 读卡器重定向\n\n**配置步骤：**\n\n1. 策略中启用“智能卡",
+          "印共享 | TCP 445 |\n| 查看USB设备 | `Get-PnpDevice -Class USB` |\n| 查看打印机 | `Get-Printer`"
+        ]
+      },
+      {
+        "question": "排查外设策略未放行问题时，策略优先级顺序是怎样的？",
+        "hit_position": -1,
+        "golden_context": "检查策略优先级：用户策略 > 池策略 > 全局策略。",
+        "retrieved_top": [
+          "## 防火墙策略配置与排障手册\n\n## 一、策略优先级规则\n\n主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用*",
+          " | 域名解析 |\n| SNMP | UDP | 161/162 | 监控采集 |\n| Syslog | UDP | 514 | 日志外发 |\n| LDAP |",
+          "y` 查看会话匹配的策略ID。\n4. 调整规则顺序：`security-policy` 视图下使用 `move rule` 或重新编号。\n\n### 3.2 规则"
+        ]
+      },
+      {
+        "question": "当虚拟机内USB设备出现“代码 10”或“代码 28”报错时，临时测试禁用驱动签名强制应执行什么命令？",
+        "hit_position": 0,
+        "golden_context": "禁用驱动签名强制（临时测试）：`bcdedit /set testsigning on`，重启后测试，生产环境不建议。",
+        "retrieved_top": [
+          "ws 10需KB5000000以上，Windows 7需KB4474419。\n\n#### 3.3 驱动不兼容\n\n**现象：** 设备在虚拟机内出现但报错“代码 ",
+          "客户端到虚拟机的TCP 3389（RDP）或1494（ICA）端口是否放行。\n\n#### 2.3 读卡器重定向\n\n**配置步骤：**\n\n1. 策略中启用“智能卡",
+          "s -s\n   ```\n7. 配置授权服务器并重启服务：\n   ```bash\n   sudo systemctl restart nvidia-vgpud\n "
+        ]
+      },
+      {
+        "question": "NVIDIA vGPU 授权服务器默认的服务端口和 Web 管理端口分别是多少？",
+        "hit_position": 0,
+        "golden_context": "默认服务端口为 **7070**，Web 管理端口为 **8080**。",
+        "retrieved_top": [
+          "A 系列 vGPU 或 MIG；训练用直通。\n\n### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内",
+          "端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6789 | TCP ",
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0"
+        ]
+      },
+      {
+        "question": "在 Linux 虚拟机中配置 vGPU 授权服务器地址时，向 /etc/nvidia/gridd.conf 追加的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "echo \"LicenseServer=7070@10.0.0.100\" >> /etc/nvidia/gridd.conf",
+        "retrieved_top": [
+          "nse-server-ip>:8080`，登录后上传从 NVIDIA 获取的 `.bin` 授权文件。\n5. 在虚拟机内 vGPU 驱动配置中指定授权服务器地址",
+          "s -s\n   ```\n7. 配置授权服务器并重启服务：\n   ```bash\n   sudo systemctl restart nvidia-vgpud\n ",
+          "型号 NVLink 互联\n\n**监控命令**：\n\n```bash\nnvidia-smi --query-gpu=memory.used,memory.total"
+        ]
+      },
+      {
+        "question": "交付中推荐用于大规模 VDI 的 NVIDIA 显卡型号是什么？其显存配置如何？",
+        "hit_position": 4,
+        "golden_context": "**NVIDIA A16**：4×16GB，专为虚拟桌面设计，密度高，适合大规模 VDI。",
+        "retrieved_top": [
+          "\n\n### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|------",
+          "## 企业私有化大模型部署指南\n\n### 1. 模型选型：7B 与 14B 的适用边界\n\n| 参数量 | 典型模型 | 最低显存（FP16） | 推荐场景 |\n",
+          "NVIDIA A40**：48GB，适合专业图形与中等训练。\n- **NVIDIA H20**：面向大模型推理，合规场景可选。\n\n注意：消费级 GeForce "
+        ]
+      },
+      {
+        "question": "vGPU 节点与授权服务器、存储之间的网络带宽建议是多少？AI 推理场景推荐多少？",
+        "hit_position": 3,
+        "golden_context": "**网络**：vGPU 节点与授权服务器、存储之间建议 **万兆（10GbE）以上**，AI 推理场景推荐 25GbE 或 100GbE。",
+        "retrieved_top": [
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池"
+        ]
+      },
+      {
+        "question": "桌面云网络排查时，建议每用户至少多少带宽？丢包率应低于多少？",
+        "hit_position": -1,
+        "golden_context": "2. 确认带宽是否充足（建议每用户至少 2Mbps）\n3. 检查是否有丢包（丢包率应低于 1%）",
+        "retrieved_top": [
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类",
+          "开发 ≤ 2:1。\n\n### 六、调优步骤总结\n\n1. 检查桌面配额：CPU、内存、磁盘 IOPS。\n2. 测试网络：时延 < 30 ms，丢包 < 0.1%，",
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1"
+        ]
+      },
+      {
+        "question": "桌面云客户端优化有哪些具体措施？",
+        "hit_position": 0,
+        "golden_context": "1. 升级客户端到最新版本\n2. 开启客户端硬件加速\n3. 设置开机自启动 + 系统托盘常驻\n4. 清理客户端缓存",
+        "retrieved_top": [
+          "# 桌面云接入速度优化指南\n\n## 一、常见问题现象\n\n用户反馈桌面云登录慢、打开应用卡、操作延迟高。可能的原因包括网络问题、服务器资源不足、客户端配置不当等。",
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1",
+          "## 桌面云平台整体架构与部署指南\n\n## 1. 架构概述\n\n桌面云平台采用分层解耦架构，核心组件包括：连接代理（Connection Broker）、虚拟桌面"
+        ]
+      },
+      {
+        "question": "桌面云性能指标中，登录时间、操作延迟和3D帧率的良好标准分别是什么？",
+        "hit_position": -1,
+        "golden_context": "| 登录时间 | <5s | 5-10s | >10s |\n| 操作延迟 | <100ms | 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | ",
+        "retrieved_top": [
+          "## 桌面云性能调优指南：操作卡顿、鼠标延迟、画面冻结的常见原因\n\n### 一、问题现象与排查思路\n\n桌面云体验劣化通常表现为三类现象：操作卡顿（应用响应慢）、",
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1",
+          "# 桌面云接入速度优化指南\n\n## 一、常见问题现象\n\n用户反馈桌面云登录慢、打开应用卡、操作延迟高。可能的原因包括网络问题、服务器资源不足、客户端配置不当等。"
+        ]
+      },
+      {
+        "question": "某券商18000点桌面云项目优化后，客户端接入速度提升了多少？主要优化手段有哪些？",
+        "hit_position": 0,
+        "golden_context": "某券商 18000 点桌面云项目，客户端接入速度从比竞品慢 2s 优化到反超快 8s+，累计优化 10s+。主要优化手段：双入口架构（内网直连+外网负载均衡代理）+ 启动策略优化 + 客户端整体现代化",
+        "retrieved_top": [
+          "| 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | <20fps |\n\n## 六、典型案例\n\n某券商 1",
+          "# 桌面云接入速度优化指南\n\n## 一、常见问题现象\n\n用户反馈桌面云登录慢、打开应用卡、操作延迟高。可能的原因包括网络问题、服务器资源不足、客户端配置不当等。",
+          "## 桌面云登录与连接故障排查手册\n\n## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类"
+        ]
+      },
+      {
+        "question": "数据中心三层架构中，核心层建议部署什么设备，配置要求是什么？",
+        "hit_position": 0,
+        "golden_context": "核心层负责高速转发，建议部署2台框式交换机（如Cisco N9500或华为CE12800），配置双主控、双电源。",
+        "retrieved_top": [
+          "## 数据中心网络规划指南\n\n### 1. 三层架构设计原则\n\n采用核心-汇聚-接入三层模型。核心层负责高速转发，建议部署2台框式交换机（如Cisco N950",
+          "## 超融合集群架构与部署指南\n\n## 1. 架构概述\n\n超融合基础设施（HCI）将计算、存储、网络资源通过软件定义方式融合于标准 x86 服务器节点，形成统一",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）"
+        ]
+      },
+      {
+        "question": "存储网和业务网分别建议使用哪个VLAN范围？",
+        "hit_position": 4,
+        "golden_context": "- VLAN 100-199：存储网（iSCSI/NFS）\n- VLAN 200-299：业务网（Web/App）",
+        "retrieved_top": [
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **",
+          "## 分布式存储（EDS类）部署指南\n\n### 1. 存储节点规划\n\n#### 1.1 硬件配置基线\nEDS 采用 SSD 缓存 + HDD 容量的混合架构。单"
+        ]
+      },
+      {
+        "question": "端口聚合链路负载均衡采用什么哈希算法，单条链路利用率阈值是多少？",
+        "hit_position": 0,
+        "golden_context": "聚合链路负载均衡采用src-dst-ip哈希，单条链路利用率不超过70%。",
+        "retrieved_top": [
+          "annel-protocol lacp\n!\ninterface Port-channel10\n switchport mode trunk\n switchpor",
+          " 常见不匹配项：\n  - IKE 版本：IKEv1 vs IKEv2\n  - 加密算法：AES-128 vs AES-256\n  - 哈希：SHA1 vs SH",
+          "）**：\n```\ninterface Eth-Trunk1\n mode lacp-static\n dfs-group 1\n peer-link 1\n```\n需确"
+        ]
+      },
+      {
+        "question": "M-LAG配置中peer-link带宽有什么要求？",
+        "hit_position": 0,
+        "golden_context": "需确保peer-link带宽≥业务链路总带宽的50%。",
+        "retrieved_top": [
+          "）**：\n```\ninterface Eth-Trunk1\n mode lacp-static\n dfs-group 1\n peer-link 1\n```\n需确",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）",
+          "00-499：DMZ区\n\n**配置示例（Cisco）**：\n```\nvlan 200\n name PROD-WEB\ninterface Vlan200\n ip "
+        ]
+      },
+      {
+        "question": "业务割接失败时，回退的触发条件有哪些？",
+        "hit_position": 0,
+        "golden_context": "- 核心业务接口错误率 > 5%，持续 5 分钟\n- 数据库主从延迟 > 30s\n- 关键交易 TPS 下降超过基线 40%",
+        "retrieved_top": [
+          "## 业务割接与变更管理方案\n\n### 1. 割接前准备\n\n#### 1.1 回退方案\n\n割接失败时须在 **30 分钟**内恢复原生产环境。回退触发条件：\n\n",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser",
+          "TUS LIKE 'Slow_queries'` |\n\n#### 3.3 业务功能\n\n- 用户登录：`POST /api/login` 返回 token\n- 下"
+        ]
+      },
+      {
+        "question": "割接步骤中，T+5min 时检查端口监听的命令是什么？",
+        "hit_position": -1,
+        "golden_context": "ss -lntp | grep -E '8080|8443|3306|6379'",
+        "retrieved_top": [
+          "## 业务割接与变更管理方案\n\n### 1. 割接前准备\n\n#### 1.1 回退方案\n\n割接失败时须在 **30 分钟**内恢复原生产环境。回退触发条件：\n\n",
+          "edis List `review_queue`，端口 `6379`）。\n\n### 2. 关键配置与命令\n\n#### 2.1 分类初筛服务启动\n```bash\n",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser"
+        ]
+      },
+      {
+        "question": "业务验证清单中，API P99 RT 的阈值和采集命令是什么？",
+        "hit_position": 3,
+        "golden_context": "| API P99 RT | < 500ms | `wrk -t4 -c100 -d60s https://api.example.com/v1/query` |",
+        "retrieved_top": [
+          "edis List `review_queue`，端口 `6379`）。\n\n### 2. 关键配置与命令\n\n#### 2.1 分类初筛服务启动\n```bash\n",
+          "question`、`answer`、`contexts`、`ground_truth` 四列。\n\n#### 4.2 核心指标\n- **Faithfulness",
+          "）**：\n```\ninterface Eth-Trunk1\n mode lacp-static\n dfs-group 1\n peer-link 1\n```\n需确"
+        ]
+      },
+      {
+        "question": "失败回退流程中，恢复原库写入的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "恢复原库写入：`SET GLOBAL read_only=OFF`",
+        "retrieved_top": [
+          "TUS LIKE 'Slow_queries'` |\n\n#### 3.3 业务功能\n\n- 用户登录：`POST /api/login` 返回 token\n- 下",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser",
+          "## 业务割接与变更管理方案\n\n### 1. 割接前准备\n\n#### 1.1 回退方案\n\n割接失败时须在 **30 分钟**内恢复原生产环境。回退触发条件：\n\n"
+        ]
+      },
+      {
+        "question": "超融合集群中，Ceph Monitor 和 Ceph OSD 分别使用哪些 TCP 端口？",
+        "hit_position": 4,
+        "golden_context": "| Ceph Monitor | 3300, 6789 | TCP |\n| Ceph OSD | 6800-7300 | TCP |",
+        "retrieved_top": [
+          "## 超融合集群架构与部署指南\n\n## 1. 架构概述\n\n超融合基础设施（HCI）将计算、存储、网络资源通过软件定义方式融合于标准 x86 服务器节点，形成统一",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）"
+        ]
+      },
+      {
+        "question": "部署前对网络平面进行带宽测试时，iperf3 的测试结果需要达到什么标准？",
+        "hit_position": 2,
+        "golden_context": "各平面 `ping` 连通性、`iperf3` 带宽测试 ≥ 线速 90%",
+        "retrieved_top": [
+          "）**：\n```\ninterface Eth-Trunk1\n mode lacp-static\n dfs-group 1\n peer-link 1\n```\n需确",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping",
+          "稳定版\n3. **网络验证**\n   - 各平面 `ping` 连通性、`iperf3` 带宽测试 ≥ 线速 90%\n   - 交换机端口 MTU、LACP 配"
+        ]
+      },
+      {
+        "question": "在 3 节点集群初始化中，使用 hci-deployer 生成加入 Token 的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "hci-deployer token create --role compute,storage --ttl 24h",
+        "retrieved_top": [
+          "ci-deployer init --cluster-name prod-hci --mgmt-ip 10.10.300.11\n```\n\n**步骤 2：生成集群",
+          "加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n```bash\nlsmod | g",
+          "稳定版\n3. **网络验证**\n   - 各平面 `ping` 连通性、`iperf3` 带宽测试 ≥ 线速 90%\n   - 交换机端口 MTU、LACP 配"
+        ]
+      },
+      {
+        "question": "部署后验证时，模拟单节点断电后集群需要在多长时间内恢复 HEALTH_OK？",
+        "hit_position": 0,
+        "golden_context": "模拟单节点断电，确认数据不丢失、集群 5 分钟内恢复 HEALTH_OK",
+        "retrieved_top": [
+          "--vip 10.10.300.100\nhci-deployer monitor enable --prometheus --grafana\n```\n\n## 5",
+          "整体超过 **75%**，建议优先横向扩容节点而非单节点加盘。\n\n---\n\n### 七、日常巡检清单\n\n- 每日：`ceph -s`、`ceph osd tre",
+          "：重复第 3 节连通性与业务功能检查\n5. **复盘**：24h 内输出回退报告，记录时间线、根因、改进项\n\n回退完成后，须在变更管理系统（如 Jira/Ser"
+        ]
+      },
+      {
+        "question": "超融合节点离线时，带外管理口（IPMI/iDRAC/iLO）默认使用哪些端口？",
+        "hit_position": 0,
+        "golden_context": "默认端口：`443`（HTTPS）、`623`（IPMI）",
+        "retrieved_top": [
+          "## 超融合节点故障排查手册：节点离线/宕机/掉线的处理流程\n\n### 一、故障分级与初步判断\n\n节点“离线/宕机/掉线”通常表现为：\n- 管理界面（如 Pri",
+          "| 融合节点 | 同时承担计算+存储 | 32C / 256GB / 混合盘配置 |\n\n> 生产环境建议至少 3 节点起步，管理节点独立部署（3 节点做高可用）",
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0"
+        ]
+      },
+      {
+        "question": "检查节点网卡 bonding 状态时，需要查看哪个文件？",
+        "hit_position": 0,
+        "golden_context": "cat /proc/net/bonding/bond0",
+        "retrieved_top": [
+          " 启动阶段\n3. **强制重启前**：记录 `last reset reason`，避免直接断电导致存储元数据损坏\n4. **恢复供电后**：进入 BIOS/U",
+          "流量。\n\n### 3. 排查步骤\n\n1. 确认物理链路与路由可达：\n```bash\nping -c 4 <VPN_PEER_IP>\ntraceroute <VP",
+          " 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 SSD:HDD 容量比控制在 1:10 以内。\n- **"
+        ]
+      },
+      {
+        "question": "vSAN 集群心跳使用哪个端口？",
+        "hit_position": -1,
+        "golden_context": "vSAN：`2233`（TCP/UDP）",
+        "retrieved_top": [
+          "二、端口放行规划\n\n### 2.1 规划原则\n\n- 最小化放行：仅开放业务必需端口，禁止 `any/any`。\n- 源目精确：生产环境禁止使用 `0.0.0.0",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操",
+          "行最终增量同步\n   ```bash\n   pt-heartbeat --update --database heartbeat --host 10.0.0.1"
+        ]
+      },
+      {
+        "question": "Ceph 数据重建时，如何临时调整 min_size 以允许重建？",
+        "hit_position": -1,
+        "golden_context": "ceph osd pool set <pool> min_size 1`（临时），重建完成后恢复为 `2`",
+        "retrieved_top": [
+          "ol> min_size 1`（临时），重建完成后恢复为 `2`\n3. **重建速率与阈值**\n   - 建议限制重建带宽：vSAN `esxcli vsan ",
+          "d pool set data-pool target_max_bytes 10995116277760\n```\n建议每15分钟执行一次分层评估，迁移窗口设为业",
+          "log/backup/inc.log 2>&1\n```\n\n校验：每次备份完成后执行 `md5sum` 比对，失败重试 3 次，间隔 10 分钟。\n\n### 4."
+        ]
+      },
+      {
+        "question": "Ceph 集群中 ceph-mon 和 ceph-mgr 的默认端口分别是什么？",
+        "hit_position": 1,
+        "golden_context": "默认集群已部署 `ceph-mon`（默认端口 **3300/6789**）、`ceph-mgr`（默认端口 **6800-7300**）、`ceph-osd`（默认端口 **6800-7300**）",
+        "retrieved_top": [
+          "00-499：DMZ区\n\n**配置示例（Cisco）**：\n```\nvlan 200\n name PROD-WEB\ninterface Vlan200\n ip ",
+          "## 超融合存储集群运维指南\n\n### 一、适用范围与前置说明\n\n本指南适用于基于 Ceph 引擎的超融合存储集群（典型版本 Nautilus/Octopus/",
+          "\n     iptables -L -n | grep -E \"2233|6789|6800\"\n     ```\n3. **集群状态查询**\n   - vSAN"
+        ]
+      },
+      {
+        "question": "处理存储池降级时，若为单 OSD 短暂抖动，需要等待多少秒观察是否自愈？",
+        "hit_position": 0,
+        "golden_context": "若为单 OSD 短暂抖动，等待 **300 秒**（`mon_osd_report_timeout` 默认值）观察是否自愈。",
+        "retrieved_top": [
+          "降级范围：\n   ```bash\n   ceph pg dump_stuck degraded\n   ceph pg dump_stuck undersized",
+          "172：PCoIP\n- UDP 3389：RDP UDP 传输\n- TCP 3389：RDP\n\n### 四、存储 IO 瓶颈\n\n#### 4.1 常见原因\n\n-",
+          "端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。\n2. 检查 MTU：`ping"
+        ]
+      },
+      {
+        "question": "创建 3 副本池 pool-critical 时，size 和 min_size 应分别设置为多少？",
+        "hit_position": 0,
+        "golden_context": "ceph osd pool set pool-critical size 3\nceph osd pool set pool-critical min_size 2",
+        "retrieved_top": [
+          "本池\nceph osd pool create pool-general 128 128\nceph osd pool set pool-general size",
+          "jectargs '--osd-max-backfills=1'\n   ceph tell osd.* injectargs '--osd-recovery-m",
+          "b-k] \\\n  --cache-mode writeback \\\n  --pg-num 128\n```\n3. 参数说明：\n   - `--cache-mode"
+        ]
+      },
+      {
+        "question": "容量预警中，使用率达到多少百分比时应立即扩容？",
+        "hit_position": 0,
+        "golden_context": "| 严重 | 85% | 立即扩容 |",
+        "retrieved_top": [
+          "tical min_size\n```\n\n---\n\n### 六、容量预警与扩容建议\n\n#### 6.1 阈值定义\n\n| 级别 | 使用率 | 动作 |\n|----",
+          "代理 CPU 使用率持续 >70% 时横向扩展。\n- 会话网关带宽按每并发用户 2 Mbps 预留。\n- 许可证服务需预留 10% 冗余授权数。\n- 虚拟桌面池",
+          "，MTU 建议 9000。\n- 若使用 vSAN，确认新节点磁盘组已自动创建或手动添加。\n- 检查端口连通性：`nc -zv <节点IP> 111`（NFS）、"
+        ]
+      },
+      {
+        "question": "在超融合集群中新增节点前，对集群当前存储利用率有什么要求？",
+        "hit_position": 0,
+        "golden_context": "集群当前存储利用率 ≤ 70%，否则先清理或扩容再添加节点。",
+        "retrieved_top": [
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操",
+          "## 超融合集群架构与部署指南\n\n## 1. 架构概述\n\n超融合基础设施（HCI）将计算、存储、网络资源通过软件定义方式融合于标准 x86 服务器节点，形成统一",
+          "## 超融合存储集群运维指南\n\n### 一、适用范围与前置说明\n\n本指南适用于基于 Ceph 引擎的超融合存储集群（典型版本 Nautilus/Octopus/"
+        ]
+      },
+      {
+        "question": "存储池扩容时数据重建限速建议设置多少，重建期间 IO 延迟超过多少会自动降速？",
+        "hit_position": 0,
+        "golden_context": "设置数据重建限速：建议 100–200 MB/s，避免影响业务。",
+        "retrieved_top": [
+          "，MTU 建议 9000。\n- 若使用 vSAN，确认新节点磁盘组已自动创建或手动添加。\n- 检查端口连通性：`nc -zv <节点IP> 111`（NFS）、",
+          "ol> min_size 1`（临时），重建完成后恢复为 `2`\n3. **重建速率与阈值**\n   - 建议限制重建带宽：vSAN `esxcli vsan ",
+          "\n- 重建期间 IO 延迟 > 20 ms 时，自动降速至 50 MB/s。\n\n### 三、虚拟机在线迁移前提条件\n\n| 项目 | 要求 |\n|------|-"
+        ]
+      },
+      {
+        "question": "虚拟机在线迁移时，VMware vMotion、libvirt 和 Nutanix 分别使用哪些迁移端口？",
+        "hit_position": 0,
+        "golden_context": "| 端口 | 迁移端口 8000（VMware vMotion）、16509（libvirt）、29876（Nutanix） |",
+        "retrieved_top": [
+          "\n- 重建期间 IO 延迟 > 20 ms 时，自动降速至 50 MB/s。\n\n### 三、虚拟机在线迁移前提条件\n\n| 项目 | 要求 |\n|------|-",
+          "## GPU虚拟化（vGPU）配置指南\n\n本文面向企业云计算交付与运维人员，说明 NVIDIA vGPU 的类型划分、授权服务器部署、推荐硬件选型、存储网络要求",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操"
+        ]
+      },
+      {
+        "question": "迁移失败时，应优先检查哪些端口是否被防火墙拦截？",
+        "hit_position": -1,
+        "golden_context": "迁移失败：检查端口 8000/16509 是否被防火墙拦截。",
+        "retrieved_top": [
+          "码策略 | ≥12位，90天 | `chage -l username` |\n| 日志留存 | ≥180天 | `ls -l /var/log/audit/` ",
+          "## 防火墙策略配置与排障手册\n\n## 一、策略优先级规则\n\n主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用*",
+          "IDS/IPS**：镜像核心交换机流量，检测横向移动。\n\n#### 4.2 关键配置参数\n- 防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF"
+        ]
+      }
+    ]
+  },
+  "production": {
+    "name": "semantic_parent_child + hybrid + rerank",
+    "metrics": {
+      "total": 100,
+      "avg_ms": 13.17272424697876,
+      "hit_rate@1": 0.81,
+      "hit_rate@3": 0.98,
+      "hit_rate@5": 0.99,
+      "mrr": 0.8903
+    },
+    "detail": [
+      {
+        "question": "在 vLLM 部署 7B 模型时，--gpu-memory-utilization 参数的安全阈值范围是多少？超过多少容易 OOM？",
+        "hit_position": 0,
+        "golden_context": "- `--gpu-memory-utilization`：0.85~0.92，超过 0.95 易 OOM",
+        "retrieved_top": [
+          "### 2. 推理框架：vLLM 与 PagedAttention\n\nvLLM 通过 PagedAttention 将 KV Cache 分页管理，显存利用率可",
+          "# 关注 await、%util\n```\n\n阈值：\n- await < 20 ms，%util < 80%。\n- 超过则需扩容存储或迁移桌面。",
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +"
+        ]
+      },
+      {
+        "question": "7B 模型使用 AWQ INT4 量化后显存占用大约多少？是否支持单卡部署多实例？",
+        "hit_position": 0,
+        "golden_context": "- 7B 优先 AWQ INT4，显存占用约 5GB，可单卡部署多实例",
+        "retrieved_top": [
+          "### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|--------",
+          "### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|--------",
+          "### 4. GPU 资源规划\n\n**单卡显存公式**：`模型权重 + KV Cache + 激活 ≈ 参数量×量化字节 + 并发×序列长×2×层数×隐藏维`\n"
+        ]
+      },
+      {
+        "question": "Nginx 网关限流配置中，单 Key 默认的 QPS 阈值是多少？超限返回什么状态码？",
+        "hit_position": 0,
+        "golden_context": "3. 限流阈值：单 Key 默认 10 QPS，超限返回 429",
+        "retrieved_top": [
+          "### 5. API 网关与权限控制\n\n**架构**：vLLM (8000) → Nginx (443) → 业务系统\n\nNginx 配置片段：\n\n```ngi",
+          "### 5. API 网关与权限控制\n\n**架构**：vLLM (8000) → Nginx (443) → 业务系统\n\nNginx 配置片段：\n\n```ngi",
+          "### 6. 交付检查清单\n\n1. 模型权重 MD5 校验通过\n2. vLLM 服务 `curl /v1/models` 返回 200\n3. 压测 100 并发"
+        ]
+      },
+      {
+        "question": "交付检查清单中，压测 100 并发时 P99 延迟要求低于多少？监控告警需要接入哪些组件的端口？",
+        "hit_position": 0,
+        "golden_context": "3. 压测 100 并发，P99 延迟 < 3s\n4. 量化回归评分下降 ≤ 5%\n5. 网关限流与鉴权生效\n6. 监控告警接入 Prometheus (9090) + Grafana (3000)",
+        "retrieved_top": [
+          "### 6. 交付检查清单\n\n1. 模型权重 MD5 校验通过\n2. vLLM 服务 `curl /v1/models` 返回 200\n3. 压测 100 并发",
+          "### 六、交付检查清单\n\n- 授权服务器 7070 端口可达，授权文件已加载\n- vGPU profile 与业务负载匹配\n- 网络 ≥ 万兆，存储 IOPS",
+          "# 检查项：mon quorum、osd up/in、网络延迟、时钟偏差\n```\n\n**步骤 7：启用高可用与监控**\n\n```bash\nhci-deploye"
+        ]
+      },
+      {
+        "question": "文档清洗去重时 MinHash LSH 的阈值设为多少？",
+        "hit_position": 0,
+        "golden_context": "去重：使用 MinHash LSH，阈值设为 0.85。",
+        "retrieved_top": [
+          "#### 1.1 清洗流程\n1. 去重：使用 MinHash LSH，阈值设为 0.85。\n2. 去噪：正则移除页眉页脚、`<!-- -->` 注释、连续空行（",
+          "#### 4.2 核心指标\n- **Faithfulness**：答案中每个陈述是否可由上下文推断。阈值 ≥ 0.85。\n- **Answer Relevanc",
+          "#### 3.1 CrossEncoder 重排\n- 模型：`bge-reranker-large`。\n- 输入：query + 候选文档，输出相关性分数。\n-"
+        ]
+      },
+      {
+        "question": "父子块策略中父块和子块分别是多少 token，用什么实现？",
+        "hit_position": 0,
+        "golden_context": "父块：1024 token，用于生成回答上下文。\n  - 子块：256 token，用于检索。子块命中后返回其父块。\n  - 实现：LangChain `ParentDocumentRetriever",
+        "retrieved_top": [
+          "#### 1.2 分块策略\n- **语义分块**：使用 `text-embedding-3-small` 计算相邻句子余弦相似度，阈值低于 0.7 时切分。最大",
+          "# 初始化配置\nhci-deployer init --cluster-name prod-hci --mgmt-ip 10.10.300.11\n```\n\n**",
+          "#### 3.1 外设策略未放行\n\n**现象：** 设备在客户端可见，但虚拟机内无设备。\n\n**排查：**\n\n1. 检查策略是否绑定到当前用户/虚拟机。\n2. "
+        ]
+      },
+      {
+        "question": "向量检索使用的 Milvus 端口和 HNSW 索引参数 M、efConstruction、ef 分别是多少？",
+        "hit_position": 0,
+        "golden_context": "向量库：Milvus 2.4，端口 `19530`。\n- 索引：HNSW，`M=16`，`efConstruction=200`，检索 `ef=128`。",
+        "retrieved_top": [
+          "#### 2.1 向量检索\n- 模型：`bge-m3`，维度 1024。\n- 向量库：Milvus 2.4，端口 `19530`。\n- 索引：HNSW，`M=1",
+          "#### 2.2 BM25 检索\n- 使用 Elasticsearch 8.x，端口 `9200`。\n- 索引 mapping：`content` 字段 `ty",
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +"
+        ]
+      },
+      {
+        "question": "RAGAS 评估中 Hit Rate 的 K 值和阈值是多少，若低于阈值应如何调优？",
+        "hit_position": 1,
+        "golden_context": "**Hit Rate**：Top K 中是否包含正确文档。K=3，阈值 ≥ 0.90。",
+        "retrieved_top": [
+          "#### 4.4 调优闭环\n1. 若 Faithfulness < 0.85：收紧 Prompt，增加拒答阈值。\n2. 若 Hit Rate < 0.90：调整",
+          "#### 4.2 核心指标\n- **Faithfulness**：答案中每个陈述是否可由上下文推断。阈值 ≥ 0.85。\n- **Answer Relevanc",
+          "#### 2.1 分类初筛服务启动\n```bash\npython -m classifier.server --port 8001 --model-path /"
+        ]
+      },
+      {
+        "question": "工单智能处理 Agent 的四个阶段通过什么消息队列串联？默认端口是多少？",
+        "hit_position": 0,
+        "golden_context": "各阶段通过内部消息队列（NATS，默认端口 `4222`）串联。",
+        "retrieved_top": [
+          "### 1. 总体流程设计\n\n工单智能处理 Agent 按四阶段流水线运行，各阶段通过内部消息队列（NATS，默认端口 `4222`）串联。\n\n1. **工单分",
+          "## 工单智能处理 Agent 落地指南",
+          "### 1. 总体流程设计\n\n工单智能处理 Agent 按四阶段流水线运行，各阶段通过内部消息队列（NATS，默认端口 `4222`）串联。\n\n1. **工单分"
+        ]
+      },
+      {
+        "question": "启动分类初筛服务时，如何指定模型路径和置信度阈值？",
+        "hit_position": 0,
+        "golden_context": "python -m classifier.server --port 8001 --model-path /models/cls_v3 \\\n  --confidence-threshold 0.75 ",
+        "retrieved_top": [
+          "#### 2.1 分类初筛服务启动\n```bash\npython -m classifier.server --port 8001 --model-path /",
+          "#### 4.2 核心指标\n- **Faithfulness**：答案中每个陈述是否可由上下文推断。阈值 ≥ 0.85。\n- **Answer Relevanc",
+          "### 1. 总体流程设计\n\n工单智能处理 Agent 按四阶段流水线运行，各阶段通过内部消息队列（NATS，默认端口 `4222`）串联。\n\n1. **工单分"
+        ]
+      },
+      {
+        "question": "构建可复现的评测集时，使用 pytest 固定随机种子的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "pytest tests/eval --seed 42 --num-samples 200",
+        "retrieved_top": [
+          "### 3. 评测集构建（可复现样例）\n\n构建 200 条领域知识样例，覆盖 5 个一级分类，每类 40 条。样例格式：\n```json\n{\n  \"ticket",
+          "### 3. 评测集构建（可复现样例）\n\n构建 200 条领域知识样例，覆盖 5 个一级分类，每类 40 条。样例格式：\n```json\n{\n  \"ticket",
+          "### 一、适用范围与前置说明\n\n本指南适用于基于 Ceph 引擎的超融合存储集群（典型版本 Nautilus/Octopus/Quincy），覆盖存储池降级、"
+        ]
+      },
+      {
+        "question": "A/B 对比验证中，判定 Agent 有效的条件是什么？",
+        "hit_position": 1,
+        "golden_context": "若 B 组 MTTR 降低 `> 20%` 且 FAR 提升 `> 15%`，且 p-value `< 0.05`，则判定 Agent 有效。",
+        "retrieved_top": [
+          "#### 2.1 证书失效\n- 现象：IKE 第一阶段协商失败，日志出现 `certificate expired`、`no suitable certific",
+          "### 4. A/B 对比验证方法\n\n将流量按 `ticket_id` 哈希取模分为 A（对照组，纯人工）和 B（实验组，Agent 流水线），比例 `50%:",
+          "### 4. A/B 对比验证方法\n\n将流量按 `ticket_id` 哈希取模分为 A（对照组，纯人工）和 B（实验组，Agent 流水线），比例 `50%:"
+        ]
+      },
+      {
+        "question": "存储池告警磁盘异常且节点降级时，排查磁盘故障的第一步应该查看什么信息？",
+        "hit_position": 1,
+        "golden_context": "1. 查看磁盘 SMART 信息",
+        "retrieved_top": [
+          "### 现象\n- 存储池告警磁盘异常\n- 节点下线或降级\n- IO 延迟升高",
+          "### 排查步骤\n1. 查看磁盘 SMART 信息\n2. 检查磁盘是否物理损坏\n3. 确认是否是误报（拔出重插测试）\n4. 查看重建进度",
+          "### 处理方法\n- 单块磁盘故障：等待自动重建\n- 多块磁盘故障：联系技术支持\n- 定期检查磁盘健康状态"
+        ]
+      },
+      {
+        "question": "存储节点失联、IO 卡住或集群裂脑时，排查网络故障需要确认万兆网卡状态以及检查什么？",
+        "hit_position": 1,
+        "golden_context": "2. 确认万兆网卡状态",
+        "retrieved_top": [
+          "### 现象\n- 存储节点失联\n- IO 卡住或超时\n- 集群裂脑",
+          "### 排查步骤\n1. 检查存储网络连通性\n2. 确认万兆网卡状态\n3. 查看交换机端口错误计数\n4. 检查网络风暴",
+          "## 6. 排查顺序建议\n\n1. 先查网络延迟与端口连通性（3.1）\n2. 再查网关与认证服务状态（3.2 / 5.1）\n3. 检查证书有效期（4.2 / 5."
+        ]
+      },
+      {
+        "question": "针对性能问题中的磁盘性能瓶颈（SSD vs HDD），优化建议中提出增加什么缓存层？",
+        "hit_position": 0,
+        "golden_context": "1. 增加 SSD 缓存层",
+        "retrieved_top": [
+          "### 优化建议\n1. 增加 SSD 缓存层\n2. 开启智能分层\n3. 优化条带大小\n4. 小文件合并",
+          "### 常见原因\n1. 磁盘性能瓶颈（SSD vs HDD）\n2. 网络带宽不足\n3. 缓存命中率低\n4. 小文件过多",
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +"
+        ]
+      },
+      {
+        "question": "日常运维建议中，重要数据应开启多副本，至少需要几个副本？",
+        "hit_position": 0,
+        "golden_context": "重要数据开启多副本（至少 3 副本）",
+        "retrieved_top": [
+          "## 四、日常运维建议\n\n- 每天检查集群健康状态\n- 每周检查磁盘 SMART\n- 每月做一次性能基线对比\n- 重要数据开启多副本（至少 3 副本）",
+          "#### 5.1 策略规范\n\n- 一般业务池：**至少 2 副本**；\n- 重要数据池（数据库、核心业务）：**3 副本**；\n- 禁止使用 `size=1` ",
+          "#### 3.1 常见原因\n\n- OSD 离线导致 PG 副本数低于 `size`；\n- CRUSH 规则变更后数据未完成重分布；\n- 新建池未达到最小副本数。"
+        ]
+      },
+      {
+        "question": "部署 NVIDIA 授权服务器时，License 服务默认使用哪个端口？",
+        "hit_position": 0,
+        "golden_context": "配置 License 服务端口（默认 7070）",
+        "retrieved_top": [
+          "### 1. NVIDIA 授权服务器部署\n1. 安装 NVIDIA License Server\n2. 导入授权文件\n3. 配置 License 服务端口（默",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停"
+        ]
+      },
+      {
+        "question": "GPU 虚拟化云桌面方案中，存储网络和业务网络分别要求多少带宽？",
+        "hit_position": 0,
+        "golden_context": "存储网络：万兆以上\n- 业务网络：万兆以上",
+        "retrieved_top": [
+          "### 网络要求\n- 管理网络：千兆以上\n- 存储网络：万兆以上\n- 业务网络：万兆以上",
+          "## 一、方案概述\n\nGPU 虚拟化云桌面适用于 3D 设计、视频渲染、GIS 等高性能图形场景。通过 NVIDIA 显卡虚拟化技术，将一块物理 GPU 资源切",
+          "# GPU 虚拟化云桌面部署指南"
+        ]
+      },
+      {
+        "question": "配置 GPU 资源池时，A16 显卡可以配置哪些 vGPU 类型？",
+        "hit_position": 0,
+        "golden_context": "配置 vGPU 类型（如 A16-1Q / A16-2Q / A16-4Q）",
+        "retrieved_top": [
+          "### 2. GPU 资源池配置\n1. 在虚拟化平台添加 GPU 主机\n2. 配置 vGPU 类型（如 A16-1Q / A16-2Q / A16-4Q）\n3.",
+          "### 三、推荐显卡型号\n\n以下型号官方支持 vGPU，交付中常见：\n\n- **NVIDIA A10**：24GB 显存，适合 VDI、云游戏、AI 推理，单卡",
+          "### 服务器配置\n- CPU：至少 2 颗，每颗 16 核以上\n- 内存：每 GPU 卡配置 128GB 以上\n- GPU：NVIDIA A10 / A16 "
+        ]
+      },
+      {
+        "question": "重型渲染场景推荐使用哪种 vGPU 类型，显存建议是多少？",
+        "hit_position": 0,
+        "golden_context": "| 重型渲染 | 8Q / 16Q | 8GB+ |",
+        "retrieved_top": [
+          "## 五、适用场景\n\n| 场景 | 推荐 vGPU 类型 | 显存建议 |\n|------|---------------|---------|\n| 2D 办公",
+          "### 1. 模型选型：7B 与 14B 的适用边界\n\n| 参数量 | 典型模型 | 最低显存（FP16） | 推荐场景 |\n|--------|-------",
+          "### 三、推荐显卡型号\n\n以下型号官方支持 vGPU，交付中常见：\n\n- **NVIDIA A10**：24GB 显存，适合 VDI、云游戏、AI 推理，单卡"
+        ]
+      },
+      {
+        "question": "EDS 存储节点的 SSD 缓存盘和 HDD 容量盘推荐配置分别是多少？单节点裸容量是多少？",
+        "hit_position": 0,
+        "golden_context": "| SSD 缓存盘 | NVMe 1.92TB 企业级 | 2 | 做 RAID1，用于元数据与写缓存 |\n| HDD 容量盘 | 16TB SATA 7.2K | 10 | 单节点裸容量 160TB",
+        "retrieved_top": [
+          "#### 1.1 硬件配置基线\nEDS 采用 SSD 缓存 + HDD 容量的混合架构。单节点推荐配置如下：\n\n| 组件 | 规格 | 数量 | 说明 |\n|-",
+          "#### 1.1 硬件配置基线\nEDS 采用 SSD 缓存 + HDD 容量的混合架构。单节点推荐配置如下：\n\n| 组件 | 规格 | 数量 | 说明 |\n|-",
+          "#### 1.2 节点角色划分\n- **管理节点**：3 节点，部署 EDS 管理服务与元数据服务，不参与数据存储。\n- **存储节点**：≥3 节点，每节点 "
+        ]
+      },
+      {
+        "question": "EDS 后端存储网的 MTU 要求是多少？如何用 ping 命令验证 Jumbo Frame 配置是否生效？",
+        "hit_position": 1,
+        "golden_context": "- **后端存储网**：10GbE 或 25GbE，承载副本复制与数据重建，MTU 9000（Jumbo Frame）。",
+        "retrieved_top": [
+          "#### 2.3 网络配置命令（每存储节点）\n```bash",
+          "#### 2.1 网络分区\n- **前端业务网**：10GbE，承载客户端读写，MTU 1500。\n- **后端存储网**：10GbE 或 25GbE，承载副本",
+          "### 四、第三步：存储网络与集群心跳检查（15–30 分钟）\n\n1. **存储网络连通性**\n   ```bash\n   ping -M do -s 8972"
+        ]
+      },
+      {
+        "question": "EDS 创建存储池时 --pg-num 参数如何计算？30 个 OSD 三副本场景下 PG 建议值是多少？",
+        "hit_position": 0,
+        "golden_context": "- `--pg-num`：PG 数 = (OSD 总数 × 100) / 副本数，取 2 的幂。10 OSD × 3 节点 = 30 OSD，三副本时 PG 建议 1024。",
+        "retrieved_top": [
+          "#### 3.2 创建存储池\n1. 登录管理控制台或 CLI。\n2. 执行创建命令：\n```bash\neds pool create \\\n  --name po",
+          "# 创建 3 副本池\nceph osd pool create pool-critical 128 128\nceph osd pool set pool-cri",
+          "#### 3.2 创建存储池\n1. 登录管理控制台或 CLI。\n2. 执行创建命令：\n```bash\neds pool create \\\n  --name po"
+        ]
+      },
+      {
+        "question": "EDS 中磁盘使用率超过多少会触发再平衡？单 OSD 使用率偏差超过多少会触发回填？",
+        "hit_position": 0,
+        "golden_context": "- 磁盘使用率 > 85% 触发再平衡。\n- 单 OSD 使用率偏差 > 10% 触发回填。",
+        "retrieved_top": [
+          "#### 4.3 数据再平衡阈值\n- 磁盘使用率 > 85% 触发再平衡。\n- 单 OSD 使用率偏差 > 10% 触发回填。\n- 调整命令：\n```bash\n",
+          "#### 2.3 阈值告警\n- 扩容后若单节点利用率 > 80%，需触发再平衡。\n- 重建期间 IO 延迟 > 20 ms 时，自动降速至 50 MB/s。",
+          "### 六、性能基线测试方法\n\n**测试工具：**\n- FIO 3.35+：块层与文件层\n- COSBench：对象存储\n- IOR：并行文件系统\n\n**基线测"
+        ]
+      },
+      {
+        "question": "在Ceph + BlueStore中配置SSD缓存层时，cache_target_dirty_ratio和cache_min_flush_age的推荐阈值分别是多少？",
+        "hit_position": 0,
+        "golden_context": "- `cache_target_dirty_ratio`：0.4\n- `cache_target_full_ratio`：0.8\n- `cache_min_flush_age`：600（秒）\n- `c",
+        "retrieved_top": [
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +",
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +",
+          "### 一、SSD缓存层配置\n\nSSD缓存层用于加速元数据及热点数据读写，建议采用NVMe SSD，容量不低于总数据量的10%。\n\n**配置步骤（以Ceph +"
+        ]
+      },
+      {
+        "question": "智能分层策略中热层和温层的访问频率划分标准是什么？",
+        "hit_position": 0,
+        "golden_context": "- 热层：SSD/NVMe，访问频率 > 10次/小时\n- 温层：SAS/HDD，访问频率 1~10次/小时\n- 冷层：大容量HDD/对象存储，访问频率 < 1次/天",
+        "retrieved_top": [
+          "### 二、智能分层策略\n\n按访问频率将数据分为热、温、冷三层，自动迁移。\n\n**策略定义：**\n- 热层：SSD/NVMe，访问频率 > 10次/小时\n- 温",
+          "### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：\n\n| 区域名称 | 功能定位 | 部署要",
+          "### 五、热点数据识别\n\n通过采样与统计识别热点，指导缓存与分层。\n\n**方法：**\n- 使用`ceph osd pool stats`或`iostat -x"
+        ]
+      },
+      {
+        "question": "针对数据库OLTP业务，推荐的条带大小范围是多少？",
+        "hit_position": 0,
+        "golden_context": "| 数据库OLTP | 64K~128K | 降低延迟 |",
+        "retrieved_top": [
+          "### 三、条带大小选择\n\n条带大小影响吞吐与IOPS，需匹配业务IO模型。\n\n| 业务类型 | 推荐条带 | 说明 |\n|--------|--------|",
+          "#### 4.2 条带配置\n条带用于提升大文件顺序读写性能。建议：\n- 条带单元 `stripe_unit`：512KB（大文件场景）或 64KB（小文件/数据",
+          "### 2. VLAN划分与配置\n\n按业务类型划分VLAN，建议范围：\n- VLAN 10-99：管理网（带外管理）\n- VLAN 100-199：存储网（iS"
+        ]
+      },
+      {
+        "question": "性能基线测试中，随机写测试的FIO命令使用什么块大小和队列深度？",
+        "hit_position": 0,
+        "golden_context": "fio --name=randwrite --rw=randwrite --bs=4k --iodepth=32 --numjobs=8 --size=5G --runtime=120 --time_",
+        "retrieved_top": [
+          "### 六、性能基线测试方法\n\n**测试工具：**\n- FIO 3.35+：块层与文件层\n- COSBench：对象存储\n- IOR：并行文件系统\n\n**基线测",
+          "### 六、性能基线测试方法\n\n**测试工具：**\n- FIO 3.35+：块层与文件层\n- COSBench：对象存储\n- IOR：并行文件系统\n\n**基线测",
+          "#### 3.2 性能\n\n| 指标 | 阈值 | 采集命令 |\n|------|------|----------|\n| API P99 RT | < 500m"
+        ]
+      },
+      {
+        "question": "执行 Ceph RBD 快照操作前，需要确认存储集群的健康状态是什么？",
+        "hit_position": 0,
+        "golden_context": "存储集群健康状态为 `HEALTH_OK`（Ceph）或 `Normal`（OceanStor）。",
+        "retrieved_top": [
+          "### 1. 适用范围与前置条件\n\n本指南适用于基于 Ceph RBD、华为 OceanStor 或同类块存储的云平台交付场景。执行前确认：\n- 存储集群健康状",
+          "## 存储快照与备份恢复操作指南",
+          "#### 2.1 创建快照\n\nCeph RBD 示例（卷名 `vol-prod-01`，池 `rbd`）：\n\n```bash\nrbd snap create r"
+        ]
+      },
+      {
+        "question": "快照占用超过卷容量多少时会触发工单，超过多少会自动暂停新快照创建？",
+        "hit_position": 0,
+        "golden_context": "阈值告警：快照占用超过卷容量 20% 时触发工单；超过 30% 自动暂停新快照创建。",
+        "retrieved_top": [
+          "#### 2.2 保留策略\n\n| 快照类型 | 保留周期 | 最大数量 | 触发方式 |\n|----------|----------|----------|-",
+          "### 2. 快照创建与保留策略",
+          "#### 2.1 创建快照\n\nCeph RBD 示例（卷名 `vol-prod-01`，池 `rbd`）：\n\n```bash\nrbd snap create r"
+        ]
+      },
+      {
+        "question": "全量备份窗口的并发任务数和单任务带宽限制分别是多少？",
+        "hit_position": 0,
+        "golden_context": "备份窗口：每日 01:00-05:00，并发任务不超过 4 个，单任务带宽限制 200 MB/s。",
+        "retrieved_top": [
+          "#### 3.1 全量备份\n\n使用 `rbd export` 或厂商备份工具，输出至备份存储：\n\n```bash\nrbd export rbd/vol-prod",
+          "### 3. 备份任务配置",
+          "#### 3.3 任务调度\n\n在备份服务器 `crontab` 中配置：\n\n```bash\n0 1 * * * /opt/backup/run_full_bac"
+        ]
+      },
+      {
+        "question": "恢复一致性检查清单中要求的 RTO 和 RPO 指标分别是多少？",
+        "hit_position": 0,
+        "golden_context": "恢复 RTO ≤ 30 分钟，RPO ≤ 15 分钟。",
+        "retrieved_top": [
+          "### 5. 恢复一致性检查清单\n\n- [ ] 快照时间点与业务低峰期一致，无未落盘数据。\n- [ ] 备份文件 MD5 与源端一致，无截断。\n- [ ] 恢复",
+          "### 五、节点恢复后的数据重建与自愈检查\n\n1. **重新加入集群**\n   - vSAN：`esxcli vsan cluster join -u <uui",
+          "### 4. RAGAS 评估指标"
+        ]
+      },
+      {
+        "question": "防火墙策略匹配的优先级规则模型是什么？具体性优先原则如何理解？",
+        "hit_position": 0,
+        "golden_context": "主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用**自上而下、首次匹配即生效**的规则模型。",
+        "retrieved_top": [
+          "## 一、策略优先级规则\n\n主流防火墙（如华为USG、H3C SecPath、Cisco ASA、Palo Alto）均采用**自上而下、首次匹配即生效**的规",
+          "## 防火墙策略配置与排障手册",
+          "### 3.1 策略优先级错误\n\n**现象**：流量被拒绝，但已配置放行策略。\n\n**排查步骤**：\n1. 执行 `display security-polic"
+        ]
+      },
+      {
+        "question": "Kubernetes API 和 Docker Registry 分别需要放行哪个端口？",
+        "hit_position": -1,
+        "golden_context": "| Kubernetes API | TCP | 6443 | 集群管理 |\n| Docker Registry | TCP | 5000 | 镜像仓库 |",
+        "retrieved_top": [
+          "### 2.1 关键端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6",
+          "## 二、端口放行规划",
+          "#### 2.2 端口清单\n| 端口 | 协议 | 用途 |\n|------|------|------|\n| 22 | TCP | SSH 运维 |\n| 80"
+        ]
+      },
+      {
+        "question": "策略不生效时，如何查看会话匹配的策略ID？",
+        "hit_position": 1,
+        "golden_context": "使用 `display firewall session table source x.x.x.x destination y.y.y.y` 查看会话匹配的策略ID。",
+        "retrieved_top": [
+          "## 三、策略不生效排查",
+          "### 3.1 策略优先级错误\n\n**现象**：流量被拒绝，但已配置放行策略。\n\n**排查步骤**：\n1. 执行 `display security-polic",
+          "### 3.1 策略优先级错误\n\n**现象**：流量被拒绝，但已配置放行策略。\n\n**排查步骤**：\n1. 执行 `display security-polic"
+        ]
+      },
+      {
+        "question": "TCP、UDP、ICMP 的会话老化时间默认值分别是多少？长连接业务如何调整？",
+        "hit_position": 0,
+        "golden_context": "2. 常见默认值：TCP 3600s、UDP 120s、ICMP 20s。",
+        "retrieved_top": [
+          "### 3.3 会话老化\n\n**现象**：策略已放行，但长连接间歇性中断。\n\n**排查步骤**：\n1. 查看会话老化时间：`display firewall s",
+          "### 2.2 组件间通信端口\n\n| 源组件 | 目标组件 | 协议 | 端口 | 用途 |\n|--------|----------|------|-----",
+          "### 4.3 许可证余量\n\n1. 查询许可证：\n   ```bash\n   license-cli query\n   # 关注：Total / Used / "
+        ]
+      },
+      {
+        "question": "IPSec VPN 的 IKE 第一阶段协商失败，日志出现 certificate expired，应如何检查证书有效期和 CA 链完整性？",
+        "hit_position": 0,
+        "golden_context": "openssl x509 -in vpn.crt -noout -dates\nopenssl verify -CAfile ca.crt vpn.crt",
+        "retrieved_top": [
+          "#### 2.1 证书失效\n- 现象：IKE 第一阶段协商失败，日志出现 `certificate expired`、`no suitable certific",
+          "### 4.2 证书有效期\n\n1. 检查网关证书：\n   ```bash\n   openssl x509 -in /etc/hdp/gateway.crt -n",
+          "### 5.2 证书有效期\n\n1. 检查认证服务器证书：\n   ```bash\n   openssl s_client -connect <dc_ip>:636"
+        ]
+      },
+      {
+        "question": "IPSec VPN 隧道参数不匹配时，两端 proposal、lifetime 和 DPD 的默认 lifetime 是多少？",
+        "hit_position": 0,
+        "golden_context": "两端 `proposal`、`lifetime`（默认 28800s）、`DPD` 必须一致。",
+        "retrieved_top": [
+          "#### 2.2 隧道参数不匹配\n- 现象：`NO_PROPOSAL_CHOSEN`、`INVALID_ID_INFORMATION`、`phase2 nego",
+          "#### 2.2 隧道参数不匹配\n- 现象：`NO_PROPOSAL_CHOSEN`、`INVALID_ID_INFORMATION`、`phase2 nego",
+          "### 4. 证书续期流程\n\n1. 生成 CSR：\n```bash\nopenssl req -new -newkey rsa:2048 -nodes -keyo"
+        ]
+      },
+      {
+        "question": "排查 IPSec VPN 故障时，需要放通哪些端口和协议？",
+        "hit_position": 0,
+        "golden_context": "检查端口放通：UDP 500、UDP 4500、ESP（协议号 50）、SSL VPN TCP 443。",
+        "retrieved_top": [
+          "### 3. 排查步骤\n\n1. 确认物理链路与路由可达：\n```bash\nping -c 4 <VPN_PEER_IP>\ntraceroute <VPN_PEE",
+          "#### 3.4 端口检查\n\n确保以下端口放通：\n- TCP 443：连接代理\n- TCP 8443：管理\n- UDP 4172：PCoIP\n- UDP 338",
+          "### 2.1 关键端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6"
+        ]
+      },
+      {
+        "question": "VPN 证书续期流程中，生成 CSR 的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "openssl req -new -newkey rsa:2048 -nodes -keyout vpn.key -out vpn.csr",
+        "retrieved_top": [
+          "### 4. 证书续期流程\n\n1. 生成 CSR：\n```bash\nopenssl req -new -newkey rsa:2048 -nodes -keyo",
+          "#### 2.1 证书失效\n- 现象：IKE 第一阶段协商失败，日志出现 `certificate expired`、`no suitable certific",
+          "### 5.2 证书有效期\n\n1. 检查认证服务器证书：\n   ```bash\n   openssl s_client -connect <dc_ip>:636"
+        ]
+      },
+      {
+        "question": "在等保合规建设中，如何配置iptables规则以仅允许管理区10.10.2.0/24访问核心业务区的SSH端口？",
+        "hit_position": 0,
+        "golden_context": "iptables -A INPUT -s 10.10.2.0/24 -p tcp --dport 22 -j ACCEPT\niptables -A INPUT -p tcp --dport 22 -j",
+        "retrieved_top": [
+          "### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：\n\n| 区域名称 | 功能定位 | 部署要",
+          "### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：\n\n| 区域名称 | 功能定位 | 部署要",
+          "### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：\n\n| 区域名称 | 功能定位 | 部署要"
+        ]
+      },
+      {
+        "question": "等保要求中，运维账户的密码策略具体有哪些规定？",
+        "hit_position": 0,
+        "golden_context": "所有运维账户强制启用MFA，密码策略：长度≥12位，含大小写、数字、特殊字符，90天更换。",
+        "retrieved_top": [
+          "#### 2.1 身份认证\n- 所有运维账户强制启用MFA，密码策略：长度≥12位，含大小写、数字、特殊字符，90天更换。\n- 禁止root直接登录，使用普通用",
+          "## 企业等级保护（等保）合规建设指南",
+          "# 检查防火墙规则\niptables -L -n --line-numbers\n```\n\n未通过项需在5个工作日内整改，并记录于等保台账。"
+        ]
+      },
+      {
+        "question": "等保合规对日志留存时间的要求是什么？必须采集哪些日志源？",
+        "hit_position": 0,
+        "golden_context": "等保要求日志留存≥6个月，核心操作日志≥12个月。\n\n**必须采集的日志源：**\n- 操作系统：`/var/log/secure`、`/var/log/audit/audit.log`\n- 数据库：慢",
+        "retrieved_top": [
+          "### 三、日志审计要求\n\n等保要求日志留存≥6个月，核心操作日志≥12个月。\n\n**必须采集的日志源：**\n- 操作系统：`/var/log/secure`、",
+          "## 企业等级保护（等保）合规建设指南",
+          "### 五、合规检查清单\n\n| 检查项 | 合规标准 | 检查命令/方法 |\n|-------|---------|--------------|\n| 区域隔离"
+        ]
+      },
+      {
+        "question": "在边界防护设备部署中，WAF的CC防护和防火墙会话超时的关键配置参数是什么？",
+        "hit_position": 1,
+        "golden_context": "防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF CC防护：单IP 60秒内请求>100次则挑战验证。",
+        "retrieved_top": [
+          "### 四、边界防护设备部署",
+          "#### 4.2 关键配置参数\n- 防火墙会话超时：TCP 3600秒，UDP 120秒。\n- WAF CC防护：单IP 60秒内请求>100次则挑战验证。\n-",
+          "#### 4.1 设备选型与部署位置\n- **下一代防火墙（NGFW）**：部署在互联网出口与DMZ之间，开启IPS、AV、URL过滤。\n- **WAF**：部"
+        ]
+      },
+      {
+        "question": "如何通过BMC命令行查看服务器的系统事件日志（SEL）？",
+        "hit_position": 0,
+        "golden_context": "通过SSH登录BMC，执行 `ipmitool sel list` 查看系统事件日志（SEL）。",
+        "retrieved_top": [
+          "### 1. 适用范围与前置准备\n\n本手册适用于主流x86机架式服务器（Dell PowerEdge、HPE ProLiant、浪潮NF系列等）的现场硬件故障判",
+          "### 1. 适用范围与前置准备\n\n本手册适用于主流x86机架式服务器（Dell PowerEdge、HPE ProLiant、浪潮NF系列等）的现场硬件故障判",
+          "# /etc/rsyslog.conf\n*.* @@10.10.2.100:514\n```\n在日志服务器上启用 `auditd` 规则监控关键文件：\n```ba"
+        ]
+      },
+      {
+        "question": "电源老化判定的具体阈值有哪些？",
+        "hit_position": 0,
+        "golden_context": "- 电源风扇转速持续低于 `2000 RPM`（正常约 `4000-8000 RPM`）。\n- 输入电压正常（220V±10%）时，输出电压12V偏差超过 `±5%`（即低于11.4V或高于12.6V",
+        "retrieved_top": [
+          "#### 2.2 电源老化判断阈值\n\n- 电源风扇转速持续低于 `2000 RPM`（正常约 `4000-8000 RPM`）。\n- 输入电压正常（220V±1",
+          "### 2. 电源报警判断与处理",
+          "### 4. A/B 对比验证方法\n\n将流量按 `ticket_id` 哈希取模分为 A（对照组，纯人工）和 B（实验组，Agent 流水线），比例 `50%:"
+        ]
+      },
+      {
+        "question": "风扇异响中，高频啸叫对应什么故障？转速波动阈值是多少？",
+        "hit_position": 0,
+        "golden_context": "- **高频啸叫**：轴承磨损，转速波动超过 `±15%`。",
+        "retrieved_top": [
+          "#### 3.1 异响类型与对应故障\n\n- **高频啸叫**：轴承磨损，转速波动超过 `±15%`。\n- **周期性咔哒声**：扇叶变形或异物，需停机检查。\n-",
+          "### 3. 风扇异响与损坏判断",
+          "# 关注读数：若某风扇转速 < 1500 RPM 或 > 12000 RPM，判定异常\nipmitool sensor get \"Fan1\""
+        ]
+      },
+      {
+        "question": "更换主板后需要重新配置哪些信息？",
+        "hit_position": 0,
+        "golden_context": "更换主板需重新配置BIOS、BMC IP、RAID卡信息，建议提前导出配置。",
+        "retrieved_top": [
+          "#### 4.3 处理建议\n\n1. 主板告警优先尝试重置BIOS（跳线或BMC命令 `ipmitool mc reset cold`）。\n2. 若告警持续，记录",
+          "#### 5.2 维修窗口建议\n\n- **电源/风扇热插拔**：可安排在业务低峰期（如凌晨2:00-4:00），无需停机。\n- **主板/CPU/内存更换**：",
+          "#### 2.3 处理步骤\n\n1. 确认另一路电源是否正常供电。若为冗余电源，可在线更换故障模块。\n2. 记录故障PSU槽位（通常标为PSU1/PSU2）。\n3"
+        ]
+      },
+      {
+        "question": "Linux 服务器启动卡在 GRUB 或 grub rescue> 提示符时，应该优先使用哪些命令排查？",
+        "hit_position": 2,
+        "golden_context": "| 启动卡在 GRUB / `grub rescue>` | 引导分区损坏、磁盘掉线 | `lsblk`、`fdisk -l` |",
+        "retrieved_top": [
+          "#### 步骤 4：重建 GRUB 与 initramfs\n```bash\nmount /dev/mapper/vg-root /mnt\nmount /dev/",
+          "### 四、内核升级失败回退\n\n1. 重启进入 GRUB，选择 **Advanced options → 旧内核**。\n2. 确认旧内核可用后，锁定版本：\n``",
+          "### 一、故障分类与快速定位\n\nLinux 无“蓝屏”概念，对应表现为 **kernel panic**、**systemd 启动失败**、**GRUB 引导"
+        ]
+      },
+      {
+        "question": "使用 dmesg 检查磁盘健康时，ata 报错频率超过多少需要怀疑磁盘或线缆故障？",
+        "hit_position": 0,
+        "golden_context": "阈值参考：`ata` 报错超过 5 次/分钟 → 磁盘或线缆故障；",
+        "retrieved_top": [
+          "#### 2.1 dmesg（内核环形缓冲区）\n```bash\ndmesg -T --level=err,warn          # 带时间戳，仅错误/警告",
+          "### 排查步骤\n1. 查看磁盘 SMART 信息\n2. 检查磁盘是否物理损坏\n3. 确认是否是误报（拔出重插测试）\n4. 查看重建进度",
+          "## 四、日常运维建议\n\n- 每天检查集群健康状态\n- 每周检查磁盘 SMART\n- 每月做一次性能基线对比\n- 重要数据开启多副本（至少 3 副本）"
+        ]
+      },
+      {
+        "question": "在系统盘修复步骤中，重建 initramfs 时 RHEL/CentOS 系统应执行什么命令？",
+        "hit_position": 1,
+        "golden_context": "dracut -f /boot/initramfs-$(uname -r).img $(uname -r)   # RHEL/CentOS",
+        "retrieved_top": [
+          "### 三、系统盘修复步骤（引导失败场景）",
+          "#### 步骤 4：重建 GRUB 与 initramfs\n```bash\nmount /dev/mapper/vg-root /mnt\nmount /dev/",
+          "#### 步骤 3：检查并修复文件系统\n```bash\nfsck -y /dev/sda1       # /boot 分区\nfsck -y /dev/mapp"
+        ]
+      },
+      {
+        "question": "处理驱动冲突时，如何使 modprobe 黑名单在 initramfs 中生效？",
+        "hit_position": 0,
+        "golden_context": "dracut -f                          # 重建 initramfs 使黑名单生效",
+        "retrieved_top": [
+          "### 五、驱动冲突处理\n\n现象：加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n",
+          "### 五、驱动冲突处理\n\n现象：加载某模块后 panic，日志含 `BUG: unable to handle kernel NULL pointer`。\n\n",
+          "### 常见问题\n- 授权冲突：检查授权服务器连接\n- 画面卡顿：检查显存是否足够\n- 驱动不兼容：确认 vGPU 驱动版本"
+        ]
+      },
+      {
+        "question": "连接代理向虚拟桌面池上报桌面状态使用哪个协议和端口？",
+        "hit_position": 0,
+        "golden_context": "| 连接代理 | 虚拟桌面池 | TCP | 5500 | 桌面状态上报 |",
+        "retrieved_top": [
+          "### 2.2 组件间通信端口\n\n| 源组件 | 目标组件 | 协议 | 端口 | 用途 |\n|--------|----------|------|-----",
+          "### 2.1 组件功能\n\n| 组件 | 功能 |\n|------|------|\n| 连接代理 | 会话调度、桌面分配、状态监控 |\n| 虚拟桌面池 | 托管",
+          "### 2.2 组件间通信端口\n\n| 源组件 | 目标组件 | 协议 | 端口 | 用途 |\n|--------|----------|------|-----"
+        ]
+      },
+      {
+        "question": "单机部署桌面云时，部署连接代理（broker:3.0）的 docker run 命令是什么？",
+        "hit_position": 0,
+        "golden_context": "docker run -d --name broker -p 5500:5500 -p 9443:9443 broker:3.0",
+        "retrieved_top": [
+          "### 3.1 单台部署（PoC/小型环境）\n\n1. **准备主机**：OS 为 Ubuntu 22.04 LTS，8 vCPU / 32 GB RAM / 5",
+          "### 3.1 单台部署（PoC/小型环境）\n\n1. **准备主机**：OS 为 Ubuntu 22.04 LTS，8 vCPU / 32 GB RAM / 5",
+          "### 3.2 集群部署（生产环境）\n\n1. **节点规划**：至少 3 台连接代理、2 台会话网关、2 台认证服务、2 台许可证服务。\n2. **配置共享存储"
+        ]
+      },
+      {
+        "question": "集群部署中，关闭任一连接代理后会话应在多长时间内切换至其他节点？",
+        "hit_position": 0,
+        "golden_context": "关闭任一连接代理，会话应在 30 秒内切换至其他节点。",
+        "retrieved_top": [
+          "### 3.2 集群部署（生产环境）\n\n1. **节点规划**：至少 3 台连接代理、2 台会话网关、2 台认证服务、2 台许可证服务。\n2. **配置共享存储",
+          "### 3.2 集群部署（生产环境）\n\n1. **节点规划**：至少 3 台连接代理、2 台会话网关、2 台认证服务、2 台许可证服务。\n2. **配置共享存储",
+          "## 4. 容量规划建议\n\n| 资源 | 单用户阈值 | 100 用户 | 500 用户 |\n|------|------------|----------|-"
+        ]
+      },
+      {
+        "question": "容量规划中，会话网关的带宽应按每并发用户多少预留？",
+        "hit_position": 0,
+        "golden_context": "会话网关带宽按每并发用户 2 Mbps 预留。",
+        "retrieved_top": [
+          "## 4. 容量规划建议\n\n| 资源 | 单用户阈值 | 100 用户 | 500 用户 |\n|------|------------|----------|-",
+          "## 4. 容量规划建议\n\n| 资源 | 单用户阈值 | 100 用户 | 500 用户 |\n|------|------------|----------|-",
+          "#### 1.3 容量规划公式\n可用容量 = 裸容量 × 0.85（RAID/EC 开销）× 0.9（预留水位）。例如 3 节点 × 160TB = 480TB"
+        ]
+      },
+      {
+        "question": "桌面云登录超时排查时，客户端 ping 网关的平均延迟和抖动超过多少判定为网络质量问题？",
+        "hit_position": 0,
+        "golden_context": "在客户端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网络质量问题。",
+        "retrieved_top": [
+          "### 3.1 网络延迟检查\n\n1. 在客户端执行 `ping -c 50 <gateway_ip>`，若平均延迟 > 50ms 或抖动 > 20ms，判定为网",
+          "## 二、网络排查步骤\n\n1. 检查客户端到服务器的网络延迟（ping 测试）\n2. 确认带宽是否充足（建议每用户至少 2Mbps）\n3. 检查是否有丢包（丢包",
+          "## 一、常见问题现象\n\n用户反馈桌面云登录慢、打开应用卡、操作延迟高。可能的原因包括网络问题、服务器资源不足、客户端配置不当等。"
+        ]
+      },
+      {
+        "question": "桌面云网关证书剩余有效期低于多少天必须更换，低于多少天会导致 TLS 握手随机失败？",
+        "hit_position": 0,
+        "golden_context": "阈值：剩余有效期 < 30 天必须更换；< 7 天将导致 TLS 握手随机失败。",
+        "retrieved_top": [
+          "### 4.2 证书有效期\n\n1. 检查网关证书：\n   ```bash\n   openssl x509 -in /etc/hdp/gateway.crt -n",
+          "#### 2.1 证书失效\n- 现象：IKE 第一阶段协商失败，日志出现 `certificate expired`、`no suitable certific",
+          "## 6. 排查顺序建议\n\n1. 先查网络延迟与端口连通性（3.1）\n2. 再查网关与认证服务状态（3.2 / 5.1）\n3. 检查证书有效期（4.2 / 5."
+        ]
+      },
+      {
+        "question": "排查桌面云连接断开时，agent-cli status 显示心跳间隔和连续丢失次数达到什么条件判定断连？",
+        "hit_position": 0,
+        "golden_context": "心跳间隔应 ≤ 5s，连续 3 次丢失判定断连",
+        "retrieved_top": [
+          "### 4.1 会话网关状态\n\n1. 确认网关与桌面代理（Agent）心跳：\n   ```bash\n   agent-cli status\n   # 心跳间隔应",
+          "## 4. 连接断开排查",
+          "## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类高频故障提供标准化排查路径：\n\n- 登"
+        ]
+      },
+      {
+        "question": "桌面云认证失败排查中，Kerberos 允许的时间偏差默认是多少分钟，用什么命令检查时间同步？",
+        "hit_position": 2,
+        "golden_context": "检查时间同步，Kerberos 允许偏差默认 5 分钟：",
+        "retrieved_top": [
+          "## 1. 适用范围\n\n本手册适用于企业桌面云（基于 HDP/Blast/PCoIP 等协议）交付后运维阶段，针对以下三类高频故障提供标准化排查路径：\n\n- 登",
+          "# 测试到桌面代理的时延与丢包\nping -c 100 <桌面IP>",
+          "### 5.1 认证链路检查\n\n1. 确认 AD/LDAP 连通性：\n   ```bash\n   ldapsearch -x -H ldap://<dc_ip>"
+        ]
+      },
+      {
+        "question": "在 Windows 虚拟桌面内排查 CPU 和内存瓶颈时，应该用哪个 PowerShell 命令查看处理器使用率和可用内存？",
+        "hit_position": 0,
+        "golden_context": "# 查看 CPU 与内存使用\nGet-Counter '\\Processor(_Total)\\% Processor Time','\\Memory\\Available MBytes'",
+        "retrieved_top": [
+          "# 查看 CPU 与内存使用\nGet-Counter '\\Processor(_Total)\\% Processor Time','\\Memory\\Availa",
+          "# 查看磁盘队列与 IOPS\nGet-Counter '\\PhysicalDisk(_Total)\\Disk Reads/sec','\\PhysicalDisk",
+          "## 四、服务器端优化\n\n1. 检查 CPU / 内存 / 磁盘 IO 使用率\n2. 确认 GPU 资源配置（3D 场景）\n3. 优化虚拟机模板配置\n4. 调整"
+        ]
+      },
+      {
+        "question": "桌面云中普通办公场景每用户建议的带宽是多少，1080p 分辨率下？",
+        "hit_position": 0,
+        "golden_context": "| 普通办公 | 1080p | 2–4 Mbps |",
+        "retrieved_top": [
+          "#### 3.2 每用户带宽建议\n\n| 场景 | 分辨率 | 建议带宽 |\n|------|--------|----------|\n| 文本办公 | 1080",
+          "#### 2.3 配额建议\n\n| 场景 | vCPU | 内存 | 磁盘 IOPS |\n|------|------|------|-----------|\n|",
+          "### 1. 适用范围与背景\n\n本文适用于基于华为FusionAccess、Citrix Virtual Apps and Desktops等主流"
+        ]
+      },
+      {
+        "question": "PCoIP 传输使用哪个 UDP 端口，需要在防火墙中放通？",
+        "hit_position": 0,
+        "golden_context": "UDP 4172：PCoIP",
+        "retrieved_top": [
+          "#### 3.4 端口检查\n\n确保以下端口放通：\n- TCP 443：连接代理\n- TCP 8443：管理\n- UDP 4172：PCoIP\n- UDP 338",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停",
+          "### 一、安全区域划分\n\n等保2.0要求按“一个中心、三重防护”原则划分安全区域。典型企业云环境应至少划分以下区域：\n\n| 区域名称 | 功能定位 | 部署要"
+        ]
+      },
+      {
+        "question": "宿主机 CPU 超分比检查中，%RDY 超过多少表示 vCPU 等待严重，普通办公场景建议的超分比上限是多少？",
+        "hit_position": 0,
+        "golden_context": "- %RDY > 10% 表示 vCPU 等待严重。\n- 超分比建议：普通办公 ≤ 4:1，图形/开发 ≤ 2:1。",
+        "retrieved_top": [
+          "# 关注 %RDY、%CSTP\n```\n\n阈值：\n- %RDY > 10% 表示 vCPU 等待严重。\n- 超分比建议：普通办公 ≤ 4:1，图形/开发 ≤ 2",
+          "#### 5.1 常见原因\n\n- 宿主机 vCPU 超分比 > 4:1，导致调度延迟。\n- 多个高负载桌面争抢物理核心。",
+          "# 查看宿主机 CPU 使用与超分\nesxtop"
+        ]
+      },
+      {
+        "question": "在华为FusionAccess中配置USB设备重定向时，读卡器的VID/PID应该填写什么？",
+        "hit_position": 0,
+        "golden_context": "读卡器：`VID_058F&PID_9540`",
+        "retrieved_top": [
+          "#### 2.1 USB设备重定向\n\n**配置步骤（以华为FusionAccess为例）：**\n\n1. 登录管理平台，进入“策略管理 > 外设策略”。\n2. 新",
+          "#### 2.3 读卡器重定向\n\n**配置步骤：**\n\n1. 策略中启用“智能卡重定向”和“USB重定向”。\n2. 对于非智能卡类读卡器（如身份证读卡器），必须",
+          "### 1. 适用范围与背景\n\n本文适用于基于华为FusionAccess、Citrix Virtual Apps and Desktops等主流"
+        ]
+      },
+      {
+        "question": "打印机重定向时，若使用网络打印机需要确保虚拟机可访问打印服务器的哪些TCP端口？",
+        "hit_position": 0,
+        "golden_context": "若使用网络打印机，确保虚拟机可访问打印服务器TCP 445、9100端口。",
+        "retrieved_top": [
+          "#### 2.2 打印机重定向\n\n**配置步骤：**\n\n1. 策略中启用“打印机重定向”，选择“仅重定向默认打印机”或“重定向所有打印机”。\n2. 若使用网络打",
+          "#### 2.2 打印机重定向\n\n**配置步骤：**\n\n1. 策略中启用“打印机重定向”，选择“仅重定向默认打印机”或“重定向所有打印机”。\n2. 若使用网络打",
+          "### 4. 端口与命令速查\n\n| 用途 | 端口/命令 |\n|------|-----------|\n| RDP重定向 | TCP 3389 |\n| ICA重"
+        ]
+      },
+      {
+        "question": "排查外设策略未放行问题时，策略优先级顺序是怎样的？",
+        "hit_position": 0,
+        "golden_context": "检查策略优先级：用户策略 > 池策略 > 全局策略。",
+        "retrieved_top": [
+          "#### 3.1 外设策略未放行\n\n**现象：** 设备在客户端可见，但虚拟机内无设备。\n\n**排查：**\n\n1. 检查策略是否绑定到当前用户/虚拟机。\n2. ",
+          "### 3.1 策略优先级错误\n\n**现象**：流量被拒绝，但已配置放行策略。\n\n**排查步骤**：\n1. 执行 `display security-polic",
+          "## 三、策略不生效排查"
+        ]
+      },
+      {
+        "question": "当虚拟机内USB设备出现“代码 10”或“代码 28”报错时，临时测试禁用驱动签名强制应执行什么命令？",
+        "hit_position": 0,
+        "golden_context": "禁用驱动签名强制（临时测试）：`bcdedit /set testsigning on`，重启后测试，生产环境不建议。",
+        "retrieved_top": [
+          "#### 3.3 驱动不兼容\n\n**现象：** 设备在虚拟机内出现但报错“代码 10”或“代码 28”。\n\n**排查：**\n\n1. 在虚拟机内打开设备管理器，查",
+          "#### 3.3 驱动不兼容\n\n**现象：** 设备在虚拟机内出现但报错“代码 10”或“代码 28”。\n\n**排查：**\n\n1. 在虚拟机内打开设备管理器，查",
+          "### 5. 交付验证清单\n\n1. 策略已绑定且优先级正确。\n2. 客户端与Agent版本一致。\n3. 设备VID/PID已放行。\n4. 虚拟机内驱动已安装且无"
+        ]
+      },
+      {
+        "question": "NVIDIA vGPU 授权服务器默认的服务端口和 Web 管理端口分别是多少？",
+        "hit_position": 1,
+        "golden_context": "默认服务端口为 **7070**，Web 管理端口为 **8080**。",
+        "retrieved_top": [
+          "### 1. NVIDIA 授权服务器部署\n1. 安装 NVIDIA License Server\n2. 导入授权文件\n3. 配置 License 服务端口（默",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停"
+        ]
+      },
+      {
+        "question": "在 Linux 虚拟机中配置 vGPU 授权服务器地址时，向 /etc/nvidia/gridd.conf 追加的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "echo \"LicenseServer=7070@10.0.0.100\" >> /etc/nvidia/gridd.conf",
+        "retrieved_top": [
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停",
+          "### 五、vGPU 驱动安装步骤\n\n以 Linux 虚拟机（Ubuntu 22.04）为例：\n\n1. 在虚拟化平台为虚拟机添加 vGPU 设备，选择对应 pr",
+          "### 五、vGPU 驱动安装步骤\n\n以 Linux 虚拟机（Ubuntu 22.04）为例：\n\n1. 在虚拟化平台为虚拟机添加 vGPU 设备，选择对应 pr"
+        ]
+      },
+      {
+        "question": "交付中推荐用于大规模 VDI 的 NVIDIA 显卡型号是什么？其显存配置如何？",
+        "hit_position": 0,
+        "golden_context": "**NVIDIA A16**：4×16GB，专为虚拟桌面设计，密度高，适合大规模 VDI。",
+        "retrieved_top": [
+          "### 三、推荐显卡型号\n\n以下型号官方支持 vGPU，交付中常见：\n\n- **NVIDIA A10**：24GB 显存，适合 VDI、云游戏、AI 推理，单卡",
+          "### 4. GPU 资源规划\n\n**单卡显存公式**：`模型权重 + KV Cache + 激活 ≈ 参数量×量化字节 + 并发×序列长×2×层数×隐藏维`\n",
+          "### 3. 量化方案：INT8 与 INT4\n\n| 方案 | 精度损失 | 显存节省 | 推荐工具 |\n|------|----------|--------"
+        ]
+      },
+      {
+        "question": "vGPU 节点与授权服务器、存储之间的网络带宽建议是多少？AI 推理场景推荐多少？",
+        "hit_position": 0,
+        "golden_context": "**网络**：vGPU 节点与授权服务器、存储之间建议 **万兆（10GbE）以上**，AI 推理场景推荐 25GbE 或 100GbE。",
+        "retrieved_top": [
+          "### 四、存储与网络建议\n\n- **网络**：vGPU 节点与授权服务器、存储之间建议 **万兆（10GbE）以上**，AI 推理场景推荐 25GbE 或 1",
+          "#### 3.2 每用户带宽建议\n\n| 场景 | 分辨率 | 建议带宽 |\n|------|--------|----------|\n| 文本办公 | 1080",
+          "### 六、交付检查清单\n\n- 授权服务器 7070 端口可达，授权文件已加载\n- vGPU profile 与业务负载匹配\n- 网络 ≥ 万兆，存储 IOPS"
+        ]
+      },
+      {
+        "question": "桌面云网络排查时，建议每用户至少多少带宽？丢包率应低于多少？",
+        "hit_position": 0,
+        "golden_context": "2. 确认带宽是否充足（建议每用户至少 2Mbps）\n3. 检查是否有丢包（丢包率应低于 1%）",
+        "retrieved_top": [
+          "## 二、网络排查步骤\n\n1. 检查客户端到服务器的网络延迟（ping 测试）\n2. 确认带宽是否充足（建议每用户至少 2Mbps）\n3. 检查是否有丢包（丢包",
+          "### 一、问题现象与排查思路\n\n桌面云体验劣化通常表现为三类现象：操作卡顿（应用响应慢）、鼠标延迟（指针漂移或滞后）、画面冻结（画面停止刷新）。建议按以下顺序",
+          "# 测试带宽\niperf3 -c <桌面IP> -t 30 -P 4\n```\n\n阈值：\n- 时延 < 30 ms，丢包 < 0.1%。\n- 丢包 > 1% 或时"
+        ]
+      },
+      {
+        "question": "桌面云客户端优化有哪些具体措施？",
+        "hit_position": 2,
+        "golden_context": "1. 升级客户端到最新版本\n2. 开启客户端硬件加速\n3. 设置开机自启动 + 系统托盘常驻\n4. 清理客户端缓存",
+        "retrieved_top": [
+          "## 六、典型案例\n\n某券商 18000 点桌面云项目，客户端接入速度从比竞品慢 2s 优化到反超快 8s+，累计优化 10s+。主要优化手段：双入口架构（内网",
+          "# 桌面云接入速度优化指南",
+          "## 三、客户端优化\n\n1. 升级客户端到最新版本\n2. 开启客户端硬件加速\n3. 设置开机自启动 + 系统托盘常驻\n4. 清理客户端缓存"
+        ]
+      },
+      {
+        "question": "桌面云性能指标中，登录时间、操作延迟和3D帧率的良好标准分别是什么？",
+        "hit_position": 1,
+        "golden_context": "| 登录时间 | <5s | 5-10s | >10s |\n| 操作延迟 | <100ms | 100-200ms | >200ms |\n| 帧率（3D） | >30fps | 20-30fps | ",
+        "retrieved_top": [
+          "## 桌面云性能调优指南：操作卡顿、鼠标延迟、画面冻结的常见原因",
+          "## 五、性能指标参考\n\n| 指标 | 良好 | 可接受 | 需优化 |\n|------|------|--------|--------|\n| 登录时间 | ",
+          "# 桌面云接入速度优化指南"
+        ]
+      },
+      {
+        "question": "某券商18000点桌面云项目优化后，客户端接入速度提升了多少？主要优化手段有哪些？",
+        "hit_position": 0,
+        "golden_context": "某券商 18000 点桌面云项目，客户端接入速度从比竞品慢 2s 优化到反超快 8s+，累计优化 10s+。主要优化手段：双入口架构（内网直连+外网负载均衡代理）+ 启动策略优化 + 客户端整体现代化",
+        "retrieved_top": [
+          "## 六、典型案例\n\n某券商 18000 点桌面云项目，客户端接入速度从比竞品慢 2s 优化到反超快 8s+，累计优化 10s+。主要优化手段：双入口架构（内网",
+          "# 桌面云接入速度优化指南",
+          "## 三、客户端优化\n\n1. 升级客户端到最新版本\n2. 开启客户端硬件加速\n3. 设置开机自启动 + 系统托盘常驻\n4. 清理客户端缓存"
+        ]
+      },
+      {
+        "question": "数据中心三层架构中，核心层建议部署什么设备，配置要求是什么？",
+        "hit_position": 0,
+        "golden_context": "核心层负责高速转发，建议部署2台框式交换机（如Cisco N9500或华为CE12800），配置双主控、双电源。",
+        "retrieved_top": [
+          "### 1. 三层架构设计原则\n\n采用核心-汇聚-接入三层模型。核心层负责高速转发，建议部署2台框式交换机（如Cisco N9500或华为CE12800），配置",
+          "## 1. 架构概述\n\n桌面云平台采用分层解耦架构，核心组件包括：连接代理（Connection Broker）、虚拟桌面池（Desktop Pool）、会话网",
+          "## 1. 架构概述\n\n超融合基础设施（HCI）将计算、存储、网络资源通过软件定义方式融合于标准 x86 服务器节点，形成统一资源池。典型架构包含三个核心组件："
+        ]
+      },
+      {
+        "question": "存储网和业务网分别建议使用哪个VLAN范围？",
+        "hit_position": 0,
+        "golden_context": "- VLAN 100-199：存储网（iSCSI/NFS）\n- VLAN 200-299：业务网（Web/App）",
+        "retrieved_top": [
+          "### 2. VLAN划分与配置\n\n按业务类型划分VLAN，建议范围：\n- VLAN 10-99：管理网（带外管理）\n- VLAN 100-199：存储网（iS",
+          "### 网络要求\n- 管理网络：千兆以上\n- 存储网络：万兆以上\n- 业务网络：万兆以上",
+          "#### 2.1 网络分区\n- **前端业务网**：10GbE，承载客户端读写，MTU 1500。\n- **后端存储网**：10GbE 或 25GbE，承载副本"
+        ]
+      },
+      {
+        "question": "端口聚合链路负载均衡采用什么哈希算法，单条链路利用率阈值是多少？",
+        "hit_position": 0,
+        "golden_context": "聚合链路负载均衡采用src-dst-ip哈希，单条链路利用率不超过70%。",
+        "retrieved_top": [
+          "### 3. 端口聚合配置\n\n服务器双网卡聚合采用LACP模式，交换机侧配置：\n```\ninterface range TenGigabitEthernet1/",
+          "### 6. 验收检查清单\n\n1. 所有VLAN网关VRRP状态正常，主备切换测试通过\n2. 聚合链路LACP状态为“up”，流量负载均衡\n3. 堆叠系统MAD",
+          "### 5. 带宽规划与冗余策略\n\n**带宽计算**：接入层每服务器平均2Gbps，收敛比3:1，则每接入交换机上行需6Gbps，采用2条10GE聚合。汇聚层每"
+        ]
+      },
+      {
+        "question": "M-LAG配置中peer-link带宽有什么要求？",
+        "hit_position": 0,
+        "golden_context": "需确保peer-link带宽≥业务链路总带宽的50%。",
+        "retrieved_top": [
+          "### 5. 带宽规划与冗余策略\n\n**带宽计算**：接入层每服务器平均2Gbps，收敛比3:1，则每接入交换机上行需6Gbps，采用2条10GE聚合。汇聚层每",
+          "### 5. 带宽规划与冗余策略\n\n**带宽计算**：接入层每服务器平均2Gbps，收敛比3:1，则每接入交换机上行需6Gbps，采用2条10GE聚合。汇聚层每",
+          "#### 4.2 条带配置\n条带用于提升大文件顺序读写性能。建议：\n- 条带单元 `stripe_unit`：512KB（大文件场景）或 64KB（小文件/数据"
+        ]
+      },
+      {
+        "question": "业务割接失败时，回退的触发条件有哪些？",
+        "hit_position": 0,
+        "golden_context": "- 核心业务接口错误率 > 5%，持续 5 分钟\n- 数据库主从延迟 > 30s\n- 关键交易 TPS 下降超过基线 40%",
+        "retrieved_top": [
+          "#### 1.1 回退方案\n\n割接失败时须在 **30 分钟**内恢复原生产环境。回退触发条件：\n\n- 核心业务接口错误率 > 5%，持续 5 分钟\n- 数据库",
+          "## 业务割接与变更管理方案",
+          "### 4. 失败回退流程\n\n1. **判定**：任一验证项连续 2 次失败或触发 1.1 节条件\n2. **决策**：割接指挥者 5 分钟内下达回退指令\n3."
+        ]
+      },
+      {
+        "question": "割接步骤中，T+5min 时检查端口监听的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "ss -lntp | grep -E '8080|8443|3306|6379'",
+        "retrieved_top": [
+          "### 2. 割接步骤\n\n1. **T-30min**：确认备份完成，记录基线指标（TPS、RT、错误率）\n2. **T-10min**：在负载均衡器摘除新集群",
+          "### 2. 割接步骤\n\n1. **T-30min**：确认备份完成，记录基线指标（TPS、RT、错误率）\n2. **T-10min**：在负载均衡器摘除新集群",
+          "# 检查监听端口\nnetstat -tulnp | grep -E '22|3389|3306'"
+        ]
+      },
+      {
+        "question": "业务验证清单中，API P99 RT 的阈值和采集命令是什么？",
+        "hit_position": 0,
+        "golden_context": "| API P99 RT | < 500ms | `wrk -t4 -c100 -d60s https://api.example.com/v1/query` |",
+        "retrieved_top": [
+          "#### 3.2 性能\n\n| 指标 | 阈值 | 采集命令 |\n|------|------|----------|\n| API P99 RT | < 500m",
+          "#### 4.4 验证与监控\n```bash\neds pool df                    # 查看容量与使用率\neds osd tree   ",
+          "#### 5.3 更换后验证清单\n\n- BMC `Overall Status` 为绿色。\n- `ipmitool sel list` 无新增critical条"
+        ]
+      },
+      {
+        "question": "失败回退流程中，恢复原库写入的命令是什么？",
+        "hit_position": 0,
+        "golden_context": "恢复原库写入：`SET GLOBAL read_only=OFF`",
+        "retrieved_top": [
+          "### 4. 失败回退流程\n\n1. **判定**：任一验证项连续 2 次失败或触发 1.1 节条件\n2. **决策**：割接指挥者 5 分钟内下达回退指令\n3.",
+          "#### 1.1 回退方案\n\n割接失败时须在 **30 分钟**内恢复原生产环境。回退触发条件：\n\n- 核心业务接口错误率 > 5%，持续 5 分钟\n- 数据库",
+          "### 四、回滚与故障处理\n\n- 迁移失败：检查端口 8000/16509 是否被防火墙拦截。\n- 扩容失败：回滚磁盘组，重新加入。\n- 重建卡住：`esxcl"
+        ]
+      },
+      {
+        "question": "超融合集群中，Ceph Monitor 和 Ceph OSD 分别使用哪些 TCP 端口？",
+        "hit_position": 0,
+        "golden_context": "| Ceph Monitor | 3300, 6789 | TCP |\n| Ceph OSD | 6800-7300 | TCP |",
+        "retrieved_top": [
+          "### 2.1 关键端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6",
+          "## 超融合集群架构与部署指南",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操"
+        ]
+      },
+      {
+        "question": "部署前对网络平面进行带宽测试时，iperf3 的测试结果需要达到什么标准？",
+        "hit_position": 1,
+        "golden_context": "各平面 `ping` 连通性、`iperf3` 带宽测试 ≥ 线速 90%",
+        "retrieved_top": [
+          "# 测试带宽\niperf3 -c <桌面IP> -t 30 -P 4\n```\n\n阈值：\n- 时延 < 30 ms，丢包 < 0.1%。\n- 丢包 > 1% 或时",
+          "## 3. 部署前检查清单\n\n1. **硬件检查**\n   - 所有节点 CPU 型号、内存容量一致（避免异构导致调度倾斜）\n   - 磁盘固件版本统一，NVM",
+          "## 二、网络排查步骤\n\n1. 检查客户端到服务器的网络延迟（ping 测试）\n2. 确认带宽是否充足（建议每用户至少 2Mbps）\n3. 检查是否有丢包（丢包"
+        ]
+      },
+      {
+        "question": "在 3 节点集群初始化中，使用 hci-deployer 生成加入 Token 的命令是什么？",
+        "hit_position": 4,
+        "golden_context": "hci-deployer token create --role compute,storage --ttl 24h",
+        "retrieved_top": [
+          "# 初始化配置\nhci-deployer init --cluster-name prod-hci --mgmt-ip 10.10.300.11\n```\n\n**",
+          "## 4. 多节点集群初始化步骤\n\n以下以 3 节点（node01/02/03）为例：\n\n**步骤 1：准备首个管理节点**\n\n```bash",
+          "# node02/03 执行加入\nhci-deployer join --token eyJhbGciOi... --mgmt-ip 10.10.300.11\n"
+        ]
+      },
+      {
+        "question": "部署后验证时，模拟单节点断电后集群需要在多长时间内恢复 HEALTH_OK？",
+        "hit_position": 0,
+        "golden_context": "模拟单节点断电，确认数据不丢失、集群 5 分钟内恢复 HEALTH_OK",
+        "retrieved_top": [
+          "## 5. 部署后验证\n\n- 创建测试虚拟机并迁移，验证在线迁移 < 30s\n- 模拟单节点断电，确认数据不丢失、集群 5 分钟内恢复 HEALTH_OK\n- ",
+          "### 二、第一步：物理机状态检查（0–5 分钟）\n\n1. **带外管理口（IPMI/iDRAC/iLO）登录**\n   - 默认端口：`443`（HTTPS）",
+          "### 七、升级路径\n\n若 30 分钟内无法恢复物理机，立即：\n1. 将该节点标记为 `Maintenance Mode`（vSAN）或 `ceph osd o"
+        ]
+      },
+      {
+        "question": "超融合节点离线时，带外管理口（IPMI/iDRAC/iLO）默认使用哪些端口？",
+        "hit_position": 1,
+        "golden_context": "默认端口：`443`（HTTPS）、`623`（IPMI）",
+        "retrieved_top": [
+          "## 超融合节点故障排查手册：节点离线/宕机/掉线的处理流程",
+          "### 二、第一步：物理机状态检查（0–5 分钟）\n\n1. **带外管理口（IPMI/iDRAC/iLO）登录**\n   - 默认端口：`443`（HTTPS）",
+          "### 1.1 节点角色\n\n| 角色 | 职责 | 最低配置建议 |\n|------|------|-------------|\n| 管理节点 | 承载 API"
+        ]
+      },
+      {
+        "question": "检查节点网卡 bonding 状态时，需要查看哪个文件？",
+        "hit_position": 0,
+        "golden_context": "cat /proc/net/bonding/bond0",
+        "retrieved_top": [
+          "### 三、第二步：网卡与固件检查（5–15 分钟）\n\n1. **登录节点 OS（若可 SSH）**\n   ```bash\n   ip -br link sho",
+          "### 排查步骤\n1. 检查存储网络连通性\n2. 确认万兆网卡状态\n3. 查看交换机端口错误计数\n4. 检查网络风暴",
+          "### 3.2 会话网关状态\n\n1. 登录网关管理后台，检查服务状态：\n   ```bash\n   systemctl status hdp-gateway\n "
+        ]
+      },
+      {
+        "question": "vSAN 集群心跳使用哪个端口？",
+        "hit_position": 0,
+        "golden_context": "vSAN：`2233`（TCP/UDP）",
+        "retrieved_top": [
+          "### 四、第三步：存储网络与集群心跳检查（15–30 分钟）\n\n1. **存储网络连通性**\n   ```bash\n   ping -M do -s 8972",
+          "### 2.2 典型业务端口清单\n\n| 业务类型 | 协议 | 端口 | 说明 |\n|---|---|---|---|\n| Web服务 | TCP | 80/4",
+          "#### 1.2 加入集群\n1. 登录超融合管理平台，进入 **集群 > 节点 > 添加节点**。\n2. 输入新节点管理 IP、root 密码，点击“发现节点”"
+        ]
+      },
+      {
+        "question": "Ceph 数据重建时，如何临时调整 min_size 以允许重建？",
+        "hit_position": 0,
+        "golden_context": "ceph osd pool set <pool> min_size 1`（临时），重建完成后恢复为 `2`",
+        "retrieved_top": [
+          "### 五、节点恢复后的数据重建与自愈检查\n\n1. **重新加入集群**\n   - vSAN：`esxcli vsan cluster join -u <uui",
+          "### 五、节点恢复后的数据重建与自愈检查\n\n1. **重新加入集群**\n   - vSAN：`esxcli vsan cluster join -u <uui",
+          "#### 4.2 处理流程\n\n1. 查看 OSD 详情：\n   ```bash\n   ceph osd metadata <osd-id>\n   journal"
+        ]
+      },
+      {
+        "question": "Ceph 集群中 ceph-mon 和 ceph-mgr 的默认端口分别是什么？",
+        "hit_position": 0,
+        "golden_context": "默认集群已部署 `ceph-mon`（默认端口 **3300/6789**）、`ceph-mgr`（默认端口 **6800-7300**）、`ceph-osd`（默认端口 **6800-7300**）",
+        "retrieved_top": [
+          "### 一、适用范围与前置说明\n\n本指南适用于基于 Ceph 引擎的超融合存储集群（典型版本 Nautilus/Octopus/Quincy），覆盖存储池降级、",
+          "### 四、第三步：存储网络与集群心跳检查（15–30 分钟）\n\n1. **存储网络连通性**\n   ```bash\n   ping -M do -s 8972",
+          "### 2.1 关键端口清单\n\n| 服务 | 端口 | 协议 |\n|------|------|------|\n| Ceph Monitor | 3300, 6"
+        ]
+      },
+      {
+        "question": "处理存储池降级时，若为单 OSD 短暂抖动，需要等待多少秒观察是否自愈？",
+        "hit_position": 0,
+        "golden_context": "若为单 OSD 短暂抖动，等待 **300 秒**（`mon_osd_report_timeout` 默认值）观察是否自愈。",
+        "retrieved_top": [
+          "#### 2.2 处理步骤\n\n1. 确认降级范围：\n   ```bash\n   ceph pg dump_stuck degraded\n   ceph pg d",
+          "#### 2.2 处理步骤\n\n1. 确认降级范围：\n   ```bash\n   ceph pg dump_stuck degraded\n   ceph pg d",
+          "### 二、存储池降级处理"
+        ]
+      },
+      {
+        "question": "创建 3 副本池 pool-critical 时，size 和 min_size 应分别设置为多少？",
+        "hit_position": 0,
+        "golden_context": "ceph osd pool set pool-critical size 3\nceph osd pool set pool-critical min_size 2",
+        "retrieved_top": [
+          "# 创建 3 副本池\nceph osd pool create pool-critical 128 128\nceph osd pool set pool-cri",
+          "# 创建 2 副本池\nceph osd pool create pool-general 128 128\nceph osd pool set pool-gene",
+          "# 期望 health: HEALTH_OK，mon 数量 3\n```\n\n**步骤 4：配置存储池与副本策略**\n\n```bash\nceph osd pool "
+        ]
+      },
+      {
+        "question": "容量预警中，使用率达到多少百分比时应立即扩容？",
+        "hit_position": 2,
+        "golden_context": "| 严重 | 85% | 立即扩容 |",
+        "retrieved_top": [
+          "### 六、容量预警与扩容建议",
+          "#### 2.2 操作步骤\n1. 进入 **存储 > 存储池 > 扩容**。\n2. 勾选新节点上的可用磁盘或磁盘组。\n3. 选择扩容策略：**均衡分布**（推荐",
+          "#### 6.1 阈值定义\n\n| 级别 | 使用率 | 动作 |\n|------|--------|------|\n| 预警 | 70% | 通知容量规划 |\n"
+        ]
+      },
+      {
+        "question": "在超融合集群中新增节点前，对集群当前存储利用率有什么要求？",
+        "hit_position": 0,
+        "golden_context": "集群当前存储利用率 ≤ 70%，否则先清理或扩容再添加节点。",
+        "retrieved_top": [
+          "#### 1.1 前置检查\n- 新节点硬件型号、固件版本与现网节点一致。\n- 管理网口、存储网口、迁移网口已按规划连线。\n- 新节点已安装与集群相同版本的系统及",
+          "## 超融合存储集群运维指南",
+          "## 超融合集群架构与部署指南"
+        ]
+      },
+      {
+        "question": "存储池扩容时数据重建限速建议设置多少，重建期间 IO 延迟超过多少会自动降速？",
+        "hit_position": 1,
+        "golden_context": "设置数据重建限速：建议 100–200 MB/s，避免影响业务。",
+        "retrieved_top": [
+          "#### 2.3 阈值告警\n- 扩容后若单节点利用率 > 80%，需触发再平衡。\n- 重建期间 IO 延迟 > 20 ms 时，自动降速至 50 MB/s。",
+          "#### 2.2 操作步骤\n1. 进入 **存储 > 存储池 > 扩容**。\n2. 勾选新节点上的可用磁盘或磁盘组。\n3. 选择扩容策略：**均衡分布**（推荐",
+          "#### 2.1 扩容前提\n- 新节点磁盘已加入集群存储池。\n- 集群无重建任务，`vsan.resync` 或等效指标低于 20%。"
+        ]
+      },
+      {
+        "question": "虚拟机在线迁移时，VMware vMotion、libvirt 和 Nutanix 分别使用哪些迁移端口？",
+        "hit_position": 0,
+        "golden_context": "| 端口 | 迁移端口 8000（VMware vMotion）、16509（libvirt）、29876（Nutanix） |",
+        "retrieved_top": [
+          "### 三、虚拟机在线迁移前提条件\n\n| 项目 | 要求 |\n|------|------|\n| 集群状态 | 健康，无隔离节点 |\n| 源/目标主机 | 同一",
+          "#### 3.2 迁移操作\n1. 右键虚拟机 > **迁移** > **更改主机**。\n2. 选择目标节点，选择迁移优先级：**高**（在线迁移）。\n3. 点击",
+          "## 超融合集群在线扩容与虚拟机迁移指南\n\n本文适用于主流超融合平台（如 VMware vSAN、Nutanix AHV、等）的在线扩容与迁移操"
+        ]
+      },
+      {
+        "question": "迁移失败时，应优先检查哪些端口是否被防火墙拦截？",
+        "hit_position": 0,
+        "golden_context": "迁移失败：检查端口 8000/16509 是否被防火墙拦截。",
+        "retrieved_top": [
+          "### 四、回滚与故障处理\n\n- 迁移失败：检查端口 8000/16509 是否被防火墙拦截。\n- 扩容失败：回滚磁盘组，重新加入。\n- 重建卡住：`esxcl",
+          "# 检查防火墙规则\niptables -L -n --line-numbers\n```\n\n未通过项需在5个工作日内整改，并记录于等保台账。",
+          "### 二、NVIDIA 授权服务器（vGPU License Server）配置\n\nvGPU 必须联网或指向内网授权服务器，否则实例会在 20 分钟后降频或停"
+        ]
+      }
+    ]
+  },
+  "delta": {
+    "hit_rate@1": 0.26,
+    "hit_rate@5": 0.17,
+    "mrr": 0.2401
+  }
+}

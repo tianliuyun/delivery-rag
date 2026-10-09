@@ -1,0 +1,373 @@
+{
+  "total": 30,
+  "hit_rate": 1.0,
+  "avg_faithfulness": 0.9667,
+  "avg_retrieval_ms": 6339.83,
+  "avg_generation_ms": 761.98,
+  "results": [
+    {
+      "question": "在 vLLM 部署 7B 模型时，--gpu-memory-utilization 参数的安全阈值范围是多少？超过多少容易 OOM？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 4925.102472305298,
+      "generation_ms": 668.6956882476807,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "7B 模型使用 AWQ INT4 量化后显存占用大约多少？是否支持单卡部署多实例？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5680.471181869507,
+      "generation_ms": 815.6895637512207,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "Nginx 网关限流配置中，单 Key 默认的 QPS 阈值是多少？超限返回什么状态码？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 4955.733060836792,
+      "generation_ms": 776.7958641052246,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "交付检查清单中，压测 100 并发时 P99 延迟要求低于多少？监控告警需要接入哪些组件的端口？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5548.460960388184,
+      "generation_ms": 446.34175300598145,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "文档清洗去重时 MinHash LSH 的阈值设为多少？",
+      "hit": true,
+      "faithfulness": 0.0,
+      "retrieval_ms": 5246.258974075317,
+      "generation_ms": 674.1728782653809,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "父子块策略中父块和子块分别是多少 token，用什么实现？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5325.839042663574,
+      "generation_ms": 748.4958171844482,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "向量检索使用的 Milvus 端口和 HNSW 索引参数 M、efConstruction、ef 分别是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 4574.838399887085,
+      "generation_ms": 785.092830657959,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "RAGAS 评估中 Hit Rate 的 K 值和阈值是多少，若低于阈值应如何调优？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 4572.563648223877,
+      "generation_ms": 955.6117057800293,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "工单智能处理 Agent 的四个阶段通过什么消息队列串联？默认端口是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 4730.262517929077,
+      "generation_ms": 696.2552070617676,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "启动分类初筛服务时，如何指定模型路径和置信度阈值？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5463.299989700317,
+      "generation_ms": 699.073076248169,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "构建可复现的评测集时，使用 pytest 固定随机种子的命令是什么？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7252.04062461853,
+      "generation_ms": 619.248628616333,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "A/B 对比验证中，判定 Agent 有效的条件是什么？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5771.852731704712,
+      "generation_ms": 686.4948272705078,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "存储池告警磁盘异常且节点降级时，排查磁盘故障的第一步应该查看什么信息？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7994.199752807617,
+      "generation_ms": 607.4032783508301,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "存储节点失联、IO 卡住或集群裂脑时，排查网络故障需要确认万兆网卡状态以及检查什么？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6180.542469024658,
+      "generation_ms": 756.345272064209,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "针对性能问题中的磁盘性能瓶颈（SSD vs HDD），优化建议中提出增加什么缓存层？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6366.558790206909,
+      "generation_ms": 597.1345901489258,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "日常运维建议中，重要数据应开启多副本，至少需要几个副本？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6748.8112449646,
+      "generation_ms": 534.3523025512695,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "部署 NVIDIA 授权服务器时，License 服务默认使用哪个端口？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 8639.681816101074,
+      "generation_ms": 544.3849563598633,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "GPU 虚拟化云桌面方案中，存储网络和业务网络分别要求多少带宽？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5151.275873184204,
+      "generation_ms": 884.48166847229,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "配置 GPU 资源池时，A16 显卡可以配置哪些 vGPU 类型？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7699.621915817261,
+      "generation_ms": 900.6810188293457,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "重型渲染场景推荐使用哪种 vGPU 类型，显存建议是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 8318.50290298462,
+      "generation_ms": 1049.3957996368408,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "EDS 存储节点的 SSD 缓存盘和 HDD 容量盘推荐配置分别是多少？单节点裸容量是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6842.321395874023,
+      "generation_ms": 1011.8904113769531,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "EDS 后端存储网的 MTU 要求是多少？如何用 ping 命令验证 Jumbo Frame 配置是否生效？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7158.019304275513,
+      "generation_ms": 826.5492916107178,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "EDS 创建存储池时 --pg-num 参数如何计算？30 个 OSD 三副本场景下 PG 建议值是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6507.692098617554,
+      "generation_ms": 863.3253574371338,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "EDS 中磁盘使用率超过多少会触发再平衡？单 OSD 使用率偏差超过多少会触发回填？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 8104.619741439819,
+      "generation_ms": 804.0764331817627,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "在Ceph + BlueStore中配置SSD缓存层时，cache_target_dirty_ratio和cache_min_flush_age的推荐阈值分别是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 6804.314851760864,
+      "generation_ms": 764.580249786377,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "智能分层策略中热层和温层的访问频率划分标准是什么？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 8065.506935119629,
+      "generation_ms": 1009.7546577453613,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "针对数据库OLTP业务，推荐的条带大小范围是多少？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7392.819404602051,
+      "generation_ms": 694.159984588623,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "性能基线测试中，随机写测试的FIO命令使用什么块大小和队列深度？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5473.578214645386,
+      "generation_ms": 903.4087657928467,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "执行 Ceph RBD 快照操作前，需要确认存储集群的健康状态是什么？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 7051.821947097778,
+      "generation_ms": 727.7562618255615,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    },
+    {
+      "question": "快照占用超过卷容量多少时会触发工单，超过多少会自动暂停新快照创建？",
+      "hit": true,
+      "faithfulness": 1.0,
+      "retrieval_ms": 5648.181915283203,
+      "generation_ms": 807.8017234802246,
+      "context_count": 3,
+      "metadata": {
+        "phoenix": true
+      }
+    }
+  ],
+  "config": {
+    "embedding": "models/bge-small-zh-v1.5",
+    "reranker": "models/bge-reranker-base",
+    "hybrid": "vector+bm25+rrf",
+    "top_k": 3,
+    "llm": "deepseek-chat (answer+judge)"
+  },
+  "samples": [
+    {
+      "question": "在 vLLM 部署 7B 模型时，--gpu-memory-utilization 参数的安全阈值范围是多少？超过多少容易 OOM？",
+      "hit": true,
+      "faithfulness": 1.0
+    },
+    {
+      "question": "7B 模型使用 AWQ INT4 量化后显存占用大约多少？是否支持单卡部署多实例？",
+      "hit": true,
+      "faithfulness": 1.0
+    },
+    {
+      "question": "Nginx 网关限流配置中，单 Key 默认的 QPS 阈值是多少？超限返回什么状态码？",
+      "hit": true,
+      "faithfulness": 1.0
+    },
+    {
+      "question": "交付检查清单中，压测 100 并发时 P99 延迟要求低于多少？监控告警需要接入哪些组件的端口？",
+      "hit": true,
+      "faithfulness": 1.0
+    },
+    {
+      "question": "文档清洗去重时 MinHash LSH 的阈值设为多少？",
+      "hit": true,
+      "faithfulness": 0.0
+    }
+  ]
+}
